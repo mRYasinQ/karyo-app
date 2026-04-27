@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 
-import '@/styles/globals.css';
+import { yekanBakh } from '@/lib/fonts/yekanBakh';
+import { cn } from '@/lib/utils';
 
-import type { PropsWithChildren } from 'react';
+import '@/styles/globals.css';
 
 export const metadata: Metadata = {
   title: {
@@ -13,10 +14,10 @@ export const metadata: Metadata = {
     'کاریو یک ابزار مدیریت پروژه مدرن است که به تیم‌ها کمک می‌کند تا پروژه‌های خود را به صورت کارآمد و سازمان‌یافته مدیریت کنند. با ویژگی‌های پیشرفته و رابط کاربری ساده، کاریو به شما امکان می‌دهد تا وظایف، زمان‌بندی، و همکاری تیمی را به بهترین شکل ممکن انجام دهید.',
 };
 
-export default function RootLayout({ children }: PropsWithChildren) {
+export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html lang="fa-IR" dir="rtl">
-      <body>{children}</body>
+      <body className={cn(yekanBakh.variable, 'bg-white')}>{children}</body>
     </html>
   );
 }

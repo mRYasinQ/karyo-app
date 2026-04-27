@@ -1,0 +1,123 @@
+@theme static {
+  /* Display */
+  --text-display-01: 80px;
+  --text-display-01--font-weight: 700;
+  --text-display-01--line-height: 88px;
+
+  --text-display-02: 72px;
+  --text-display-02--font-weight: 700;
+  --text-display-02--line-height: 80px;
+
+  /* Heading */
+  --text-heading-01: 56px;
+  --text-heading-01--font-weight: 700;
+  --text-heading-01--line-height: 60px;
+
+  --text-heading-02: 48px;
+  --text-heading-02--font-weight: 700;
+  --text-heading-02--line-height: 56px;
+
+  --text-heading-03: 40px;
+  --text-heading-03--font-weight: 700;
+  --text-heading-03--line-height: 48px;
+
+  --text-heading-04: 36px;
+  --text-heading-04--font-weight: 700;
+  --text-heading-04--line-height: 44px;
+
+  --text-heading-05: 32px;
+  --text-heading-05--font-weight: 700;
+  --text-heading-05--line-height: 40px;
+
+  --text-heading-06: 24px;
+  --text-heading-06--font-weight: 700;
+  --text-heading-06--line-height: 32px;
+
+  /* SubHeading */
+  --text-subheading-01: 24px;
+  --text-subheading-01--font-weight: 600;
+  --text-subheading-01--line-height: 32px;
+
+  --text-subheading-02: 20px;
+  --text-subheading-02--font-weight: 600;
+  --text-subheading-02--line-height: 28px;
+
+  --text-subheading-03: 16px;
+  --text-subheading-03--font-weight: 600;
+  --text-subheading-03--line-height: 24px;
+
+  --text-subheading-04: 14px;
+  --text-subheading-04--font-weight: 600;
+  --text-subheading-04--line-height: 20px;
+
+  /* Button */
+  --text-button-md: 16px;
+  --text-button-md--font-weight: 700;
+  --text-button-md--line-height: 48px;
+
+  --text-button-sm: 14px;
+  --text-button-sm--font-weight: 700;
+  --text-button-sm--line-height: 40px;
+
+  /* Caption */
+  --text-caption-01: 16px;
+  --text-caption-01--font-weight: 500;
+  --text-caption-01--line-height: 100px;
+
+  --text-caption-02: 14px;
+  --text-caption-02--font-weight: 500;
+  --text-caption-02--line-height: 100px;
+
+  --text-caption-03: 12px;
+  --text-caption-03--font-weight: 500;
+  --text-caption-03--line-height: 100px;
+
+  /* Body */
+  --text-body-xxl-400: 24px;
+  --text-body-xxl-400--font-weight: 400;
+  --text-body-xxl-400--line-height: 32px;
+
+  --text-body-xxl-500: 24px;
+  --text-body-xxl-500--font-weight: 500;
+  --text-body-xxl-500--line-height: 32px;
+
+  --text-body-xtra-400: 20px;
+  --text-body-xtra-400--font-weight: 400;
+  --text-body-xtra-400--line-height: 28px;
+
+  --text-body-xtra-500: 20px;
+  --text-body-xtra-500--font-weight: 500;
+  --text-body-xtra-500--line-height: 28px;
+
+  --text-body-lg-400: 18px;
+  --text-body-lg-400--font-weight: 400;
+  --text-body-lg-400--line-height: 26px;
+
+  --text-body-lg-500: 18px;
+  --text-body-lg-500--font-weight: 500;
+  --text-body-lg-500--line-height: 26px;
+
+  --text-body-md-400: 16px;
+  --text-body-md-400--font-weight: 400;
+  --text-body-md-400--line-height: 24px;
+
+  --text-body-md-500: 16px;
+  --text-body-md-500--font-weight: 500;
+  --text-body-md-500--line-height: 24px;
+
+  --text-body-sm-400: 14px;
+  --text-body-sm-400--font-weight: 400;
+  --text-body-sm-400--line-height: 20px;
+
+  --text-body-sm-500: 14px;
+  --text-body-sm-500--font-weight: 500;
+  --text-body-sm-500--line-height: 20px;
+
+  --text-body-tiny-400: 12px;
+  --text-body-tiny-400--font-weight: 400;
+  --text-body-tiny-400--line-height: 16px;
+
+  --text-body-tiny-500: 12px;
+  --text-body-tiny-500--font-weight: 500;
+  --text-body-tiny-500--line-height: 16px;
+}
