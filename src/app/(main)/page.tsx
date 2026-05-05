@@ -1,3 +1,9 @@
+import Hero from './_components/hero';
+
 export default function Home() {
-  return <div>درود بر کاریو!</div>;
+  return (
+    <main>
+      <Hero />
+    </main>
+  );
 }
