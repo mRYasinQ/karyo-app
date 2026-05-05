@@ -1,7 +1,11 @@
 @import 'tailwindcss';
+@import 'tw-animate-css';
 
-@import './colors.css';
-@import './typography.css';
+@import './theme/colors.css';
+@import './theme/typography.css';
+
+@import './common/base.css';
+@import './common/utilities.css';
 
 * {
   font-family: var(--font-yekanBakh);

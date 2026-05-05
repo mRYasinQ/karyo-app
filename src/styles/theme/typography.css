@@ -62,15 +62,15 @@
   /* Caption */
   --text-caption-01: 16px;
   --text-caption-01--font-weight: 500;
-  --text-caption-01--line-height: 100px;
+  --text-caption-01--line-height: 100%;
 
   --text-caption-02: 14px;
   --text-caption-02--font-weight: 500;
-  --text-caption-02--line-height: 100px;
+  --text-caption-02--line-height: 100%;
 
   --text-caption-03: 12px;
   --text-caption-03--font-weight: 500;
-  --text-caption-03--line-height: 100px;
+  --text-caption-03--line-height: 100%;
 
   /* Body */
   --text-body-xxl-400: 24px;

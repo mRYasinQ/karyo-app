@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { yekanBakh } from '@/lib/fonts/yekanBakh';
 import { cn } from '@/lib/utils';
 
-import '@/styles/globals.css';
+import '@/styles/app.css';
 
 export const metadata: Metadata = {
   title: {
@@ -16,8 +16,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
-    <html lang="fa-IR" dir="rtl">
-      <body className={cn(yekanBakh.variable, 'bg-white')}>{children}</body>
+    <html lang="fa-IR" dir="rtl" className={cn(yekanBakh.variable)}>
+      {children}
     </html>
   );
 }
