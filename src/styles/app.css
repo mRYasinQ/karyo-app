@@ -7,6 +7,8 @@
 @import './common/base.css';
 @import './common/utilities.css';
 
+@plugin '@iconify/tailwind4';
+
 * {
   font-family: var(--font-yekanBakh);
 }

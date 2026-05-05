@@ -24,3 +24,9 @@
     }
   }
 }
+
+@utility icon-* {
+  font-size: --value([integer]);
+  font-size: calc(--value(integer) * 1px);
+  font-size: --value(--icon-*);
+}
