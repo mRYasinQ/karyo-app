@@ -1,4 +1,4 @@
-import { emailSchema, passwordSchema } from './user.schema';
+import { emailSchema, passwordSchema } from './user';
 
 import { z } from 'zod';
 
