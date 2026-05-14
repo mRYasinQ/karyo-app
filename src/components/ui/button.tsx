@@ -1,7 +1,12 @@
+import { cn } from '@/lib/utils';
+
+import ThreeDots from '../icons/three-dots';
+
 import { Button as ButtonPrimitive } from '@base-ui/react/button';
 import { cva, type VariantProps } from 'class-variance-authority';
 
-type ButtonProps = ButtonPrimitive.Props & VariantProps<typeof buttonVariants>;
+type ButtonProps = ButtonPrimitive.Props &
+  VariantProps<typeof buttonVariants> & { isLoading?: boolean };
 
 const buttonVariants = cva(
   'group/button inline-flex items-center justify-center rounded-md border border-[1.5px] border-transparent bg-clip-padding whitespace-nowrap transition-all duration-300 outline-none select-none cursor-pointer active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none',
@@ -85,14 +90,28 @@ const Button = ({
   variant = 'primary',
   mode = 'solid',
   size = 'sm',
+  isLoading,
+  children,
   ...props
 }: ButtonProps) => {
   return (
     <ButtonPrimitive
       data-slot="button"
-      className={buttonVariants({ variant, size, mode, className })}
+      className={cn(
+        buttonVariants({ variant, size, mode, className }),
+        'relative',
+      )}
       {...props}
-    />
+    >
+      {isLoading && (
+        <div className="absolute inset-0 flex items-center justify-center">
+          <ThreeDots width={40} height={40} />
+        </div>
+      )}
+      <span className={cn('flex items-center', isLoading && 'invisible')}>
+        {children}
+      </span>
+    </ButtonPrimitive>
   );
 };
 
