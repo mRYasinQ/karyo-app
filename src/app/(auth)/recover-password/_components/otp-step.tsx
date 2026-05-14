@@ -5,7 +5,7 @@ import { useTransition } from 'react';
 import Button from '@/components/ui/button';
 import OtpField from '@/components/ui/otp-field';
 import { useAuthFlow } from '@/contexts/auth-flow';
-import { type OtpData, otpDataSchema } from '@/validations/auth.schema';
+import { type OtpData, otpDataSchema } from '@/validations/auth';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';

@@ -7,7 +7,7 @@ import Button from '@/components/ui/button';
 import Input from '@/components/ui/input';
 import { useAuthFlow } from '@/contexts/auth-flow';
 import ROUTES from '@/lib/routes';
-import { type EmailData, emailDataSchema } from '@/validations/auth.schema';
+import { type EmailData, emailDataSchema } from '@/validations/auth';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';

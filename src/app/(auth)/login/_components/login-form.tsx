@@ -6,12 +6,23 @@ import Button from '@/components/ui/button';
 import Input from '@/components/ui/input';
 import PasswordInput from '@/components/ui/password-input';
 import ROUTES from '@/lib/routes';
-import { type LoginData, loginDataSchema } from '@/validations/auth.schema';
+import toast from '@/lib/toast';
+import AuthService from '@/services/auth';
+import { type LoginData, loginDataSchema } from '@/validations/auth';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 
 const LoginForm = () => {
+  const { mutate, isPending } = useMutation({
+    mutationFn: AuthService.login,
+    onSuccess: () => {},
+    onError: () => {
+      toast.error('ایمیل یا گذرواژه نادرست می‌باشد.');
+    },
+  });
+
   const {
     register,
     handleSubmit,
@@ -21,7 +32,9 @@ const LoginForm = () => {
     resolver: zodResolver(loginDataSchema),
   });
 
-  const submitHandler = () => {};
+  const submitHandler = (data: LoginData) => {
+    mutate(data);
+  };
 
   return (
     <>
@@ -55,7 +68,9 @@ const LoginForm = () => {
           </Link>
           .
         </p>
-        <Button type="submit">وارد شو</Button>
+        <Button type="submit" isLoading={isPending}>
+          وارد شو
+        </Button>
       </form>
       <p className="text-body-sm-500 text-center text-gray-400">
         حساب کاربری ندارم،{' '}

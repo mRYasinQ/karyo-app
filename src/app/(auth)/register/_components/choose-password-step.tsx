@@ -5,10 +5,7 @@ import Button from '@/components/ui/button';
 import PasswordInput from '@/components/ui/password-input';
 import { useAuthFlow } from '@/contexts/auth-flow';
 import ROUTES from '@/lib/routes';
-import {
-  type PasswordData,
-  passwordDataSchema,
-} from '@/validations/auth.schema';
+import { type PasswordData, passwordDataSchema } from '@/validations/auth';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';

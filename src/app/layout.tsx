@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 
+import ReactQueryProvider from '@/components/providers/react-query';
 import { yekanBakh } from '@/lib/fonts/yekanBakh';
 import { cn } from '@/lib/utils';
 
@@ -20,11 +21,13 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html lang="fa-IR" dir="rtl" className={cn(yekanBakh.variable)}>
       <body className="bg-white">
-        <Toaster
-          position="top-center"
-          toastOptions={{ className: 'w-full max-w-410' }}
-        />
-        {children}
+        <ReactQueryProvider>
+          <Toaster
+            position="top-center"
+            toastOptions={{ className: 'w-full max-w-410' }}
+          />
+          {children}
+        </ReactQueryProvider>
       </body>
     </html>
   );
