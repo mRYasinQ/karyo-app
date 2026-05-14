@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html lang="fa-IR" dir="rtl" className={cn(yekanBakh.variable)}>
-      {children}
+      <body className="bg-white">{children}</body>
     </html>
   );
 }

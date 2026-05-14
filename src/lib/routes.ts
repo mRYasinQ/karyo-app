@@ -4,6 +4,7 @@ const ROUTES = {
   AUTH: {
     REGISTER: '/register',
     LOGIN: '/login',
+    RECOVER_PASSWORD: '/recover-password',
   },
 } as const;
 

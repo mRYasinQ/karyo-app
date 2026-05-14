@@ -21,9 +21,21 @@ const passwordDataSchema = z
     },
   );
 
+const loginDataSchema = z.object({
+  email: emailSchema,
+  password: passwordSchema,
+});
+
 type EmailData = z.infer<typeof emailDataSchema>;
 type OtpData = z.infer<typeof otpDataSchema>;
 type PasswordData = z.infer<typeof passwordDataSchema>;
+type LoginData = z.infer<typeof loginDataSchema>;
 
-export type { EmailData, OtpData, PasswordData };
-export { otpSchema, emailDataSchema, otpDataSchema, passwordDataSchema };
+export type { EmailData, OtpData, PasswordData, LoginData };
+export {
+  otpSchema,
+  emailDataSchema,
+  otpDataSchema,
+  passwordDataSchema,
+  loginDataSchema,
+};

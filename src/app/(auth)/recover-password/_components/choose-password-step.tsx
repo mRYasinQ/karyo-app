@@ -57,23 +57,23 @@ const ChoosePasswordStep = ({ onReset }: ChoosePasswordStepProps) => {
       <div className="flex flex-col gap-16">
         <label className="flex flex-col gap-16">
           <span className="text-body-sm-400 text-gray-400">
-            لطفا یک گذرواژه انتخاب کنید
+            لطفا یک گذرواژه جدید انتخاب کنید
           </span>
           <PasswordInput
             {...register('password')}
-            placeholder="گذرواژه"
+            placeholder="گذرواژه جدید"
             error={Boolean(errors.password)}
             errorMessage={errors.password?.message}
           />
         </label>
         <PasswordInput
           {...register('confirmPassword')}
-          placeholder="تکرار گذرواژه"
+          placeholder="تکرار گذرواژه جدید"
           error={Boolean(errors.confirmPassword)}
           errorMessage={errors.confirmPassword?.message}
         />
       </div>
-      <Button type="submit">همین حالا وارد شوید</Button>
+      <Button type="submit">تغییر گذرواژه و ورود</Button>
       <Button variant="primary" mode="soft" onClick={backHandler}>
         بازگشت
       </Button>
