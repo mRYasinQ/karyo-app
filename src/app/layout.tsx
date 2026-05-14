@@ -5,6 +5,8 @@ import { cn } from '@/lib/utils';
 
 import '@/styles/app.css';
 
+import { Toaster } from 'sonner';
+
 export const metadata: Metadata = {
   title: {
     template: '%s • کاریو',
@@ -17,7 +19,13 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html lang="fa-IR" dir="rtl" className={cn(yekanBakh.variable)}>
-      <body className="bg-white">{children}</body>
+      <body className="bg-white">
+        <Toaster
+          position="top-center"
+          toastOptions={{ className: 'w-full max-w-410' }}
+        />
+        {children}
+      </body>
     </html>
   );
 }
