@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 
 import ReactQueryProvider from '@/components/providers/react-query';
+import RouteGuardProvider from '@/components/providers/route-guard';
+import { AuthProvider } from '@/contexts/auth';
 import { yekanBakh } from '@/lib/fonts/yekanBakh';
 import { cn } from '@/lib/utils';
 
@@ -26,7 +28,9 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
             position="top-center"
             toastOptions={{ className: 'w-full max-w-410' }}
           />
-          {children}
+          <AuthProvider>
+            <RouteGuardProvider>{children}</RouteGuardProvider>
+          </AuthProvider>
         </ReactQueryProvider>
       </body>
     </html>

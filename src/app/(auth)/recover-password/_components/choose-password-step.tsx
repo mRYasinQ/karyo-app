@@ -1,21 +1,23 @@
-import { useTransition } from 'react';
-import { useRouter } from 'next/navigation';
+'use client';
 
 import Button from '@/components/ui/button';
 import PasswordInput from '@/components/ui/password-input';
+import { useAuth } from '@/contexts/auth';
 import { useAuthFlow } from '@/contexts/auth-flow';
-import ROUTES from '@/lib/routes';
+import ApiError from '@/lib/api-error';
+import toast from '@/lib/toast';
+import AuthService from '@/services/auth';
 import { type PasswordData, passwordDataSchema } from '@/validations/auth';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 
 type ChoosePasswordStepProps = { onReset: () => void };
 
 const ChoosePasswordStep = ({ onReset }: ChoosePasswordStepProps) => {
-  const [_isLoading, startTransition] = useTransition();
-
-  const router = useRouter();
+  const { login } = useAuth();
+  const { setStep, data } = useAuthFlow();
 
   const {
     register,
@@ -26,19 +28,19 @@ const ChoosePasswordStep = ({ onReset }: ChoosePasswordStepProps) => {
     resolver: zodResolver(passwordDataSchema),
   });
 
-  const { setData, setStep } = useAuthFlow();
+  const { mutate, isPending } = useMutation({
+    mutationFn: AuthService.recover,
+    onSuccess: ({ token }) => {
+      login(token, { hasToast: false });
+      toast.success('گذرواژه با موفقیت تغییر کرد.');
+    },
+    onError: (error: ApiError) => {
+      toast.error(error.message);
+    },
+  });
 
   const submitHandler = ({ confirmPassword }: PasswordData) => {
-    startTransition(() => {
-      try {
-        // TODO: API Call
-        setData({ password: confirmPassword });
-
-        router.replace(ROUTES.HOME);
-      } catch {
-        // TODO: Toast
-      }
-    });
+    mutate({ email: data.email!, otp: data.otp!, password: confirmPassword });
   };
 
   const backHandler = () => {
@@ -70,8 +72,10 @@ const ChoosePasswordStep = ({ onReset }: ChoosePasswordStepProps) => {
           errorMessage={errors.confirmPassword?.message}
         />
       </div>
-      <Button type="submit">تغییر گذرواژه و ورود</Button>
-      <Button variant="primary" mode="soft" onClick={backHandler}>
+      <Button type="submit" isLoading={isPending}>
+        تغییر گذرواژه و ورود
+      </Button>
+      <Button type="button" variant="primary" mode="soft" onClick={backHandler}>
         بازگشت
       </Button>
     </form>

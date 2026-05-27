@@ -13,7 +13,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: 'border-primary-500',
+        primary: '',
         secondary: '',
       },
       mode: {

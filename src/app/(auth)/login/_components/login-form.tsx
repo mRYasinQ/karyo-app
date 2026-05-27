@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Button from '@/components/ui/button';
 import Input from '@/components/ui/input';
 import PasswordInput from '@/components/ui/password-input';
+import { useAuth } from '@/contexts/auth';
 import ROUTES from '@/lib/routes';
 import toast from '@/lib/toast';
 import AuthService from '@/services/auth';
@@ -15,9 +16,13 @@ import { useMutation } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 
 const LoginForm = () => {
+  const { login } = useAuth();
+
   const { mutate, isPending } = useMutation({
     mutationFn: AuthService.login,
-    onSuccess: () => {},
+    onSuccess: ({ token }) => {
+      login(token);
+    },
     onError: () => {
       toast.error('ایمیل یا گذرواژه نادرست می‌باشد.');
     },

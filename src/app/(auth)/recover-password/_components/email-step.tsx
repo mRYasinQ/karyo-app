@@ -1,21 +1,22 @@
 'use client';
 
-import { useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 
 import Button from '@/components/ui/button';
 import Input from '@/components/ui/input';
 import { useAuthFlow } from '@/contexts/auth-flow';
+import ApiError from '@/lib/api-error';
+import toast from '@/lib/toast';
+import AuthService from '@/services/auth';
 import { type EmailData, emailDataSchema } from '@/validations/auth';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 
 type EmailStepProps = { onNext: () => void };
 
 const EmailStep = ({ onNext }: EmailStepProps) => {
-  const [_isLoading, startTransition] = useTransition();
-
   const router = useRouter();
 
   const {
@@ -27,20 +28,25 @@ const EmailStep = ({ onNext }: EmailStepProps) => {
     resolver: zodResolver(emailDataSchema),
   });
 
+  const { mutateAsync, isPending } = useMutation({
+    mutationFn: AuthService.otpRecover,
+    onSuccess: () => {
+      toast.success('کد بازیابی با موفقیت ارسال شد.');
+    },
+    onError: (error: ApiError) => {
+      toast.error(error.message);
+    },
+  });
+
   const { setData, setStep } = useAuthFlow();
 
-  const submitHandler = ({ email }: EmailData) => {
-    startTransition(() => {
-      try {
-        // TODO: API Call
-        setData({ email });
-
-        setStep('OTP');
-        onNext();
-      } catch {
-        // TODO: Toast
-      }
-    });
+  const submitHandler = async (data: EmailData) => {
+    try {
+      await mutateAsync(data);
+      setData({ email: data.email });
+      setStep('OTP');
+      onNext();
+    } catch {}
   };
 
   const backHandler = () => router.back();
@@ -61,8 +67,10 @@ const EmailStep = ({ onNext }: EmailStepProps) => {
           errorMessage={errors.email?.message}
         />
       </label>
-      <Button type="submit">شروع فرآیند بازیابی حساب</Button>
-      <Button variant="primary" mode="soft" onClick={backHandler}>
+      <Button type="submit" isLoading={isPending}>
+        شروع فرآیند بازیابی حساب
+      </Button>
+      <Button type="button" variant="primary" mode="soft" onClick={backHandler}>
         بازگشت
       </Button>
     </form>

@@ -1,22 +1,19 @@
-import { useTransition } from 'react';
-import { useRouter } from 'next/navigation';
-
 import Button from '@/components/ui/button';
 import PasswordInput from '@/components/ui/password-input';
+import { useAuth } from '@/contexts/auth';
 import { useAuthFlow } from '@/contexts/auth-flow';
-import ROUTES from '@/lib/routes';
+import ApiError from '@/lib/api-error';
+import toast from '@/lib/toast';
+import AuthService from '@/services/auth';
 import { type PasswordData, passwordDataSchema } from '@/validations/auth';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 
 type ChoosePasswordStepProps = { onReset: () => void };
 
 const ChoosePasswordStep = ({ onReset }: ChoosePasswordStepProps) => {
-  const [_isLoading, startTransition] = useTransition();
-
-  const router = useRouter();
-
   const {
     register,
     handleSubmit,
@@ -26,19 +23,23 @@ const ChoosePasswordStep = ({ onReset }: ChoosePasswordStepProps) => {
     resolver: zodResolver(passwordDataSchema),
   });
 
-  const { setData, setStep } = useAuthFlow();
+  const { login } = useAuth();
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: AuthService.register,
+    onSuccess: ({ token }) => {
+      login(token, { hasToast: false });
+      toast.success('ثبت نام با موفقیت انجام شد.');
+    },
+    onError: (error: ApiError) => {
+      toast.error(error.message);
+    },
+  });
+
+  const { setStep, data } = useAuthFlow();
 
   const submitHandler = ({ confirmPassword }: PasswordData) => {
-    startTransition(() => {
-      try {
-        // TODO: API Call
-        setData({ password: confirmPassword });
-
-        router.replace(ROUTES.HOME);
-      } catch {
-        // TODO: Toast
-      }
-    });
+    mutate({ email: data.email!, otp: data.otp!, password: confirmPassword });
   };
 
   const backHandler = () => {
@@ -70,7 +71,9 @@ const ChoosePasswordStep = ({ onReset }: ChoosePasswordStepProps) => {
           errorMessage={errors.confirmPassword?.message}
         />
       </div>
-      <Button type="submit">همین حالا وارد شوید</Button>
+      <Button type="submit" isLoading={isPending}>
+        همین حالا وارد شوید
+      </Button>
       <Button variant="primary" mode="soft" onClick={backHandler}>
         بازگشت
       </Button>
