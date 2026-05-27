@@ -1,3 +1,4 @@
+import ApiError from './api-error';
 import appConfig from './config';
 
 import axios, { AxiosError } from 'axios';
@@ -20,7 +21,12 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
   (response) => response,
   (error: AxiosError<ApiErrorResponse>) => {
-    return Promise.reject(error);
+    const apiError = new ApiError(
+      error.response?.data.error ?? 'مشکلی وجود داشت.',
+      error.response?.data.status_code ?? 500,
+    );
+
+    return Promise.reject(apiError);
   },
 );
 
