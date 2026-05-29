@@ -2,8 +2,11 @@
 
 import { usePathname } from 'next/navigation';
 
+import Icon from '@/components/common/icon';
 import Skeleton from '@/components/common/skeleton';
 import Avatar from '@/components/ui/avatar';
+import IconButton from '@/components/ui/icon-button';
+import { useDashboard } from '@/contexts/dashboard';
 import ProfileService from '@/services/profile';
 
 import MENU_ITEMS from '../_constants/menu-items';
@@ -17,6 +20,8 @@ const Header = () => {
     queryKey: ['profile'],
     queryFn: ProfileService.getProfile,
   });
+
+  const { toggleMobileMenu } = useDashboard();
 
   const pageTitle =
     MENU_ITEMS.find(({ href }) => pathname.startsWith(href))?.title ||
@@ -36,6 +41,14 @@ const Header = () => {
             fallback={fullName}
           />
         )}
+        <IconButton
+          variant="secondary"
+          mode="ghost"
+          className="lg:hidden"
+          onClick={toggleMobileMenu}
+        >
+          <Icon name="icon-[basil--menu-solid]" />
+        </IconButton>
       </div>
     </header>
   );
