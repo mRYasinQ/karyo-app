@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import Icon from '@/components/common/icon';
 import { useAuth } from '@/contexts/auth';
 import { useDashboard } from '@/contexts/dashboard';
+import ROUTES from '@/lib/routes';
 import { cn } from '@/lib/utils';
 
 import MENU_ITEMS from '../../_constants/menu-items';
@@ -39,7 +40,10 @@ const Sidebar = () => {
         </div>
         <nav className="flex flex-1 flex-col gap-12 overflow-y-auto px-24 py-20">
           {MENU_ITEMS.map(({ title, ...items }) => {
-            const isActive = pathname.startsWith(items.href);
+            const isActive =
+              items.href === ROUTES.DASHBOARD.MAIN
+                ? pathname === items.href
+                : pathname.startsWith(items.href);
 
             return (
               <MenuItem key={items.href} {...items} isActive={isActive}>
