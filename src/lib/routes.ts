@@ -9,6 +9,9 @@ const ROUTES = {
 
   DASHBOARD: {
     MAIN: '/dashboard',
+    PROFILE: '/dashboard/profile',
+    WORKSPACES: '/dashboard/workspaces',
+    INVITES: '/dashboard/invites',
   },
 } as const;
 
