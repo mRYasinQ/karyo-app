@@ -23,4 +23,14 @@ type ProfileData = {
 
 type ProfileResponse = ApiResponse<ProfileData>;
 
-export type { ProfileResponse };
+type UpdateProfilePayload = {
+  first_name?: string;
+  last_name?: string;
+  email?: string;
+  username?: string;
+  password?: string;
+  birthday?: string;
+  avatar?: Nullable<File>;
+};
+
+export type { ProfileData, ProfileResponse, RoleData, UpdateProfilePayload };
