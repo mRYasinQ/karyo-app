@@ -15,6 +15,8 @@ import {
   updateProfileSchema,
 } from '@/validations/profile';
 
+import PageLoader from '../../_components/page-loader';
+
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
@@ -110,7 +112,7 @@ const ProfileForm = () => {
     mutate(payload);
   };
 
-  if (isLoading) return null;
+  if (isLoading) return <PageLoader />;
 
   const fullName = user
     ? `${user.first_name ?? ''} ${user.last_name ?? ''}`.trim() || 'کاربر'
