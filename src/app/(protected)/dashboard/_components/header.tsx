@@ -7,6 +7,7 @@ import Skeleton from '@/components/common/skeleton';
 import Avatar from '@/components/ui/avatar';
 import IconButton from '@/components/ui/icon-button';
 import { useDashboard } from '@/contexts/dashboard';
+import ROUTES from '@/lib/routes';
 import ProfileService from '@/services/profile';
 
 import MENU_ITEMS from '../_constants/menu-items';
@@ -24,8 +25,11 @@ const Header = () => {
   const { toggleMobileMenu } = useDashboard();
 
   const pageTitle =
-    MENU_ITEMS.find(({ href }) => pathname.startsWith(href))?.title ||
-    'پیش‌خوان';
+    MENU_ITEMS.find(({ href }) =>
+      href === ROUTES.DASHBOARD.MAIN
+        ? pathname === href
+        : pathname.startsWith(href),
+    )?.title || 'پیش‌خوان';
   const fullName = user ? `${user.first_name} ${user.last_name}` : 'کاربر';
 
   return (
