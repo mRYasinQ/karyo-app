@@ -1,6 +1,6 @@
 import Hero from './_components/hero';
 
-export default function Home() {
+export default function HomePage() {
   return (
     <main>
       <Hero />

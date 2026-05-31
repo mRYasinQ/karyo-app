@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'ثبت‌نام',
 };
 
-export default function Register() {
+export default function RegisterPage() {
   return (
     <AuthForm title="ثبت‌نام در کاریو">
       <RegisterForm />

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'ورود',
 };
 
-export default function Page() {
+export default function LoginPage() {
   return (
     <AuthForm title="ورود به کاریو">
       <LoginForm />

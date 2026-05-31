@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'بازیابی گذرواژه',
 };
 
-export default function RecoverPassword() {
+export default function RecoverPasswordPage() {
   return (
     <AuthForm title="بازیابی حساب کاریو">
       <RecoverPasswordForm />

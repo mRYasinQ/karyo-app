@@ -1,6 +1,6 @@
 import Header from '@/components/layouts/header';
 
-export default function MainLayout({ children }: LayoutProps<'/'>) {
+export default function PublicLayout({ children }: LayoutProps<'/'>) {
   return (
     <>
       <Header />
