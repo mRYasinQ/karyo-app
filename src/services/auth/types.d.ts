@@ -18,6 +18,10 @@ type VerifyOtpPayload = {
   otp: string;
 };
 
+type VerifyEmailPayload = {
+  otp: string;
+};
+
 type LoginData = {
   email: string;
   token: string;
@@ -26,15 +30,19 @@ type LoginData = {
 type LoginResponse = ApiResponse<LoginData>;
 type OtpResponse = ApiResponse<{ email: string }>;
 type VerifyOtpResponse = ApiResponse<{ email: string; verified: boolean }>;
-type LogoutResponse = BaseApiResponse;
+type VerifyEmailResponse = ApiResponse<{
+  email: string;
+  is_email_verified: boolean;
+}>;
 
 export type {
   LoginPayload,
   ChoosePasswordPayload,
   SendOtpPayload,
   VerifyOtpPayload,
+  VerifyEmailPayload,
   LoginResponse,
   OtpResponse,
   VerifyOtpResponse,
-  LogoutResponse,
+  VerifyEmailResponse,
 };

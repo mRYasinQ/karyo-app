@@ -4,9 +4,10 @@ import type {
   ChoosePasswordPayload,
   LoginPayload,
   LoginResponse,
-  LogoutResponse,
   OtpResponse,
   SendOtpPayload,
+  VerifyEmailPayload,
+  VerifyEmailResponse,
   VerifyOtpPayload,
   VerifyOtpResponse,
 } from './types';
@@ -55,8 +56,20 @@ const AuthService = {
     return response.data.data;
   },
 
+  EmailOtp: async () => {
+    const response = await api.post<OtpResponse>('/auth/verify-email/send-otp');
+    return response.data.data;
+  },
+  verifyEmailOtp: async (payload: VerifyEmailPayload) => {
+    const response = await api.post<VerifyEmailResponse>(
+      '/auth/verify-email/verify-otp',
+      payload,
+    );
+    return response.data;
+  },
+
   logout: async () => {
-    const response = await api.post<LogoutResponse>('/auth/logout');
+    const response = await api.post<BaseApiResponse>('/auth/logout');
     return response.data;
   },
 };
