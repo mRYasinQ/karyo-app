@@ -1,5 +1,6 @@
 'use client';
 
+import OtpCountdown from '@/components/common/otp-countdown';
 import Button from '@/components/ui/button';
 import OtpField from '@/components/ui/otp-field';
 import { useAuthFlow } from '@/contexts/auth-flow';
@@ -8,8 +9,6 @@ import appConfig from '@/lib/config';
 import toast from '@/lib/toast';
 import AuthService from '@/services/auth';
 import { type OtpData, otpDataSchema } from '@/validations/auth';
-
-import OtpCountdown from '../../_components/otp-countdown';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
