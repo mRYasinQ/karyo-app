@@ -5,6 +5,7 @@ const validatedConfig = envSchema.parse({
 });
 
 const appConfig = {
+  node_env: validatedConfig.NODE_ENV,
   api: {
     base_url: validatedConfig.NEXT_PUBLIC_API_URL,
   },

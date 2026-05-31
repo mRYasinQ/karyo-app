@@ -32,6 +32,13 @@ declare global {
     status_code: number;
     error: string;
   };
+
+  type ApiParams = {
+    page?: number;
+    limit?: number;
+    sort_by?: string;
+    order?: 'ASC' | 'DESC';
+  };
 }
 
 export {};
