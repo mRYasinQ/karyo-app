@@ -13,7 +13,7 @@ const MENU_ITEMS = [
   },
   {
     title: 'میزکار‌های من',
-    href: ROUTES.DASHBOARD.WORKSPACES,
+    href: ROUTES.DASHBOARD.WORKSPACES.MAIN,
     icon: 'icon-[basil--rows-solid]',
   },
   {

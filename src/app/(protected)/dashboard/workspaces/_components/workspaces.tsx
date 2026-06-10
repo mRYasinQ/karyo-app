@@ -1,11 +1,13 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 import Icon from '@/components/common/icon';
 import Pagination from '@/components/common/pagination';
 import Button from '@/components/ui/button';
 import Input from '@/components/ui/input';
+import ROUTES from '@/lib/routes';
 import WorkspaceService from '@/services/workpsace';
 
 import PageLoader from '../../_components/page-loader';
@@ -51,7 +53,11 @@ const Workspaces = () => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <Button className="flex items-center gap-8 max-sm:w-full">
+        <Button
+          className="flex items-center gap-8 max-sm:w-full"
+          nativeButton={false}
+          render={<Link href={ROUTES.DASHBOARD.WORKSPACES.CREATE} />}
+        >
           <Icon name="icon-[basil--plus-solid]" className="size-24" />
           ایجاد میزکار
         </Button>

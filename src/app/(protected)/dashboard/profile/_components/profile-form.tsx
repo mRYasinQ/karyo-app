@@ -88,7 +88,7 @@ const ProfileForm = () => {
     }
   }, [user, reset]);
 
-  const handleAvatarChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const avatarChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
@@ -97,7 +97,7 @@ const ProfileForm = () => {
       setIsAvatarDeleted(false);
     }
   };
-  const handleDeleteAvatar = () => {
+  const deleteAvatarHandler = () => {
     setPreviewImage(null);
     setValue('avatar', undefined);
     setIsAvatarDeleted(true);
@@ -105,7 +105,7 @@ const ProfileForm = () => {
       fileInputRef.current.value = '';
     }
   };
-  const handleAvatarClick = () => {
+  const avatarClickHandler = () => {
     fileInputRef.current?.click();
   };
 
@@ -157,7 +157,7 @@ const ProfileForm = () => {
             <div className="absolute inset-0 flex items-center justify-center gap-8 bg-gray-900/60 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
               <button
                 type="button"
-                onClick={handleAvatarClick}
+                onClick={avatarClickHandler}
                 className="flex size-32 cursor-pointer items-center justify-center rounded-full bg-white/20 text-white transition-colors hover:bg-white/40"
               >
                 <Icon name="icon-[basil--edit-solid]" className="size-20" />
@@ -165,7 +165,7 @@ const ProfileForm = () => {
               {previewImage && (
                 <button
                   type="button"
-                  onClick={handleDeleteAvatar}
+                  onClick={deleteAvatarHandler}
                   className="bg-error/80 hover:bg-error flex size-32 cursor-pointer items-center justify-center rounded-full text-white transition-colors"
                 >
                   <Icon name="icon-[basil--trash-solid]" className="size-20" />
@@ -177,7 +177,7 @@ const ProfileForm = () => {
               accept="image/*"
               className="hidden"
               ref={fileInputRef}
-              onChange={handleAvatarChange}
+              onChange={avatarChangeHandler}
             />
           </div>
           <div className="flex flex-col items-center gap-4 sm:items-start sm:pt-16">

@@ -10,7 +10,11 @@ const ROUTES = {
   DASHBOARD: {
     MAIN: '/dashboard',
     PROFILE: '/dashboard/profile',
-    WORKSPACES: '/dashboard/workspaces',
+    WORKSPACES: {
+      MAIN: '/dashboard/workspaces',
+      SHOW: (slug: string) => `/dashboard/workspaces/${slug}`,
+      CREATE: '/dashboard/workspaces/create',
+    },
     INVITES: '/dashboard/invites',
   },
 } as const;
