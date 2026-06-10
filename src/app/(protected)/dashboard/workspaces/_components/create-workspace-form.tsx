@@ -1,10 +1,10 @@
 'use client';
 
 import { type ChangeEvent, useRef, useState } from 'react';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 import Icon from '@/components/common/icon';
+import WorkspaceLogo from '@/components/common/workspace-logo';
 import Button from '@/components/ui/button';
 import Input from '@/components/ui/input';
 import ROUTES from '@/lib/routes';
@@ -90,19 +90,7 @@ const CreateWorkspaceForm = () => {
     >
       <div className="flex flex-col items-center gap-16 sm:flex-row sm:items-start">
         <div className="group relative size-80 overflow-hidden rounded-2xl">
-          {previewImage ? (
-            <Image
-              src={previewImage}
-              alt="لوگو میزکار"
-              width={48}
-              height={48}
-              className="h-full w-full rounded-xl object-cover"
-            />
-          ) : (
-            <div className="bg-primary-50 text-primary-600 flex h-full w-full items-center justify-center rounded-xl">
-              <span className="text-body-lg-500 font-bold">م</span>
-            </div>
-          )}
+          <WorkspaceLogo src={previewImage} alt="نشان میزکار" fallback="م" />
           <div className="absolute inset-0 flex items-center justify-center gap-8 bg-gray-900/60 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
             <button
               type="button"

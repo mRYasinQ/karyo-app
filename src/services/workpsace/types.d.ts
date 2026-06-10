@@ -2,13 +2,15 @@ type GetWorkspacesParams = ApiParams & {
   search?: string;
 };
 
-type WorkspaceData = {
+type WorkspaceRole = 'owner' | 'admin' | 'member' | 'guest';
+type PrivateWorkspaceData = {
   id: number;
   created_at: string;
   updated_at: string;
   name: string;
   slug: string;
   logo: Nullable<string>;
+  workspace_role: WorkspaceRole;
   description: Nullable<string>;
 };
 
@@ -22,11 +24,11 @@ type WorkspacePayload = {
 type CreateWorkspacePayload = WorkspacePayload;
 type UpdateWorkspacePayload = Partial<Omit<WorkspacePayload, 'slug'>>;
 
-type WorkspacesResponse = ApiResponseWithPagination<WorkspaceData[]>;
-type WorkspaceResponse = ApiResponse<WorkspaceData>;
+type WorkspacesResponse = ApiResponseWithPagination<PrivateWorkspaceData[]>;
+type WorkspaceResponse = ApiResponse<PrivateWorkspaceData>;
 
 export type {
-  WorkspaceData,
+  PrivateWorkspaceData,
   GetWorkspacesParams,
   CreateWorkspacePayload,
   UpdateWorkspacePayload,
