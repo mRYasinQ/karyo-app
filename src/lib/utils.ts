@@ -1,5 +1,6 @@
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { z } from 'zod';
 
 const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs));
 
@@ -27,4 +28,17 @@ const buildFormData = <T extends Record<string, unknown>>(
   return formData;
 };
 
-export { buildFormData, cn };
+const withCleanFields = <T extends z.ZodTypeAny>(schema: T) => {
+  return z.preprocess((data) => {
+    if (typeof data !== 'object' || data === null) return data;
+
+    return Object.fromEntries(
+      Object.entries(data).map(([key, value]) => [
+        key,
+        value === '' ? undefined : value,
+      ]),
+    );
+  }, schema) as unknown as T;
+};
+
+export { cn, buildFormData, withCleanFields };
