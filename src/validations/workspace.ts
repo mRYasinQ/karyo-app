@@ -1,3 +1,5 @@
+import { withCleanFields } from '@/lib/utils';
+
 import { slugSchema } from './base';
 import { emailSchema } from './user';
 
@@ -17,13 +19,18 @@ const workspaceSchema = z.object({
     .optional(),
 });
 
+const updateWorkspaceSchema = withCleanFields(
+  workspaceSchema.omit({ slug: true }).partial(),
+);
+
 const inviteMemberSchema = z.object({
   email: emailSchema,
 });
 
 type WorkspaceData = z.infer<typeof workspaceSchema>;
+type UpdateWorkspaceData = z.infer<typeof updateWorkspaceSchema>;
 type InviteMemberData = z.infer<typeof inviteMemberSchema>;
 
-export type { WorkspaceData, InviteMemberData };
-export { inviteMemberSchema };
+export type { WorkspaceData, UpdateWorkspaceData, InviteMemberData };
+export { updateWorkspaceSchema, inviteMemberSchema };
 export default workspaceSchema;

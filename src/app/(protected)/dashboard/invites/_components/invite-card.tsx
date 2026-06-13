@@ -61,7 +61,7 @@ const InviteCard = ({ name, slug, logo }: InviteItemProps) => {
 
       <div className="flex items-center gap-8 max-sm:w-full">
         <Button
-          variant="secondary"
+          variant="error"
           mode="soft"
           className="max-sm:flex-1"
           onClick={decilineInviteHandler}
@@ -70,7 +70,7 @@ const InviteCard = ({ name, slug, logo }: InviteItemProps) => {
           رد دعوت
         </Button>
         <Button
-          variant="primary"
+          variant="success"
           className="max-sm:flex-1"
           onClick={acceptInviteHandler}
         >

@@ -130,7 +130,7 @@ const WorkspaceMember = ({
           <IconButton
             onClick={removeMemberHandler}
             size="sm"
-            variant="secondary"
+            variant="error"
             mode="ghost"
           >
             <Icon name="icon-[basil--trash-solid]" className="size-20" />

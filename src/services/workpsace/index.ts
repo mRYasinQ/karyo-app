@@ -4,6 +4,7 @@ import { buildFormData } from '@/lib/utils';
 import type {
   CreateWorkspacePayload,
   GetWorkspacesParams,
+  UpdateWorkspacePayload,
   WorkspaceResponse,
   WorkspacesResponse,
 } from './types';
@@ -40,6 +41,36 @@ const WorkspaceService = {
     }
 
     const response = await api.post<BaseApiResponse>('/workspaces', payload);
+    return response.data;
+  },
+
+  updateWorkspace: async (slug: string, payload: UpdateWorkspacePayload) => {
+    const hasFile = payload.logo instanceof File;
+
+    if (hasFile) {
+      const formData = buildFormData(payload);
+
+      const response = await api.patch<BaseApiResponse>(
+        `/workspaces/${slug}`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        },
+      );
+      return response.data;
+    }
+
+    const response = await api.patch<BaseApiResponse>(
+      `/workspaces/${slug}`,
+      payload,
+    );
+    return response.data;
+  },
+
+  deleteWorkspace: async (slug: string) => {
+    const response = await api.delete<BaseApiResponse>(`/workspaces/${slug}`);
     return response.data;
   },
 };
