@@ -33,6 +33,13 @@ const WorkspaceMemberService = {
     );
     return response.data;
   },
+
+  leaveWorkspace: async (slug: string) => {
+    const response = await api.post<BaseApiResponse>(
+      `/workspaces/${slug}/leave`,
+    );
+    return response.data;
+  },
 };
 
 export default WorkspaceMemberService;

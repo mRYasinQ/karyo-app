@@ -1,4 +1,5 @@
 import { slugSchema } from './base';
+import { emailSchema } from './user';
 
 import { z } from 'zod';
 
@@ -16,7 +17,13 @@ const workspaceSchema = z.object({
     .optional(),
 });
 
-type WorkspaceData = z.infer<typeof workspaceSchema>;
+const inviteMemberSchema = z.object({
+  email: emailSchema,
+});
 
-export type { WorkspaceData };
+type WorkspaceData = z.infer<typeof workspaceSchema>;
+type InviteMemberData = z.infer<typeof inviteMemberSchema>;
+
+export type { WorkspaceData, InviteMemberData };
+export { inviteMemberSchema };
 export default workspaceSchema;
