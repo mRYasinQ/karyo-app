@@ -57,7 +57,7 @@ const SessionCard = ({
 
       {!is_current && (
         <IconButton
-          variant="secondary"
+          variant="error"
           mode="ghost"
           size="sm"
           onClick={revokeSessionHandler}

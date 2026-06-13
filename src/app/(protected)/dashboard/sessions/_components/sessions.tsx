@@ -48,7 +48,7 @@ const Sessions = () => {
           لیست دستگاه‌های متصل
         </span>
         <Button
-          variant="secondary"
+          variant="error"
           className="max-sm:w-full"
           onClick={clearSessionsHandler}
           isLoading={isPending}
