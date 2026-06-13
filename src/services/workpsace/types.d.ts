@@ -28,6 +28,7 @@ type WorkspacesResponse = ApiResponseWithPagination<PrivateWorkspaceData[]>;
 type WorkspaceResponse = ApiResponse<PrivateWorkspaceData>;
 
 export type {
+  WorkspaceRole,
   PrivateWorkspaceData,
   GetWorkspacesParams,
   CreateWorkspacePayload,

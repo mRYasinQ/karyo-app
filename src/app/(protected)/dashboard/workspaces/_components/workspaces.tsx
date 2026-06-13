@@ -7,6 +7,7 @@ import Icon from '@/components/common/icon';
 import Pagination from '@/components/common/pagination';
 import Button from '@/components/ui/button';
 import Input from '@/components/ui/input';
+import useDebounce from '@/hooks/use-debounce';
 import ROUTES from '@/lib/routes';
 import WorkspaceService from '@/services/workpsace';
 
@@ -17,17 +18,13 @@ import { useQuery } from '@tanstack/react-query';
 
 const Workspaces = () => {
   const [search, setSearch] = useState<string>('');
-  const [debouncedSearch, setDebouncedSearch] = useState<string>('');
   const [page, setPage] = useState<number>(1);
 
-  useEffect(() => {
-    const timerId = setTimeout(() => {
-      setDebouncedSearch(search);
-      setPage(1);
-    }, 500);
+  const debouncedSearch = useDebounce(search);
 
-    return () => clearTimeout(timerId);
-  }, [search]);
+  useEffect(() => {
+    setPage(1);
+  }, [debouncedSearch]);
 
   const { data, isLoading, isPlaceholderData } = useQuery({
     queryKey: ['workspaces', page, debouncedSearch],
@@ -44,7 +41,7 @@ const Workspaces = () => {
   const pagination = data?.pagination;
 
   return (
-    <div className="flex min-h-[calc(100vh-140px)] flex-col gap-22">
+    <div className="flex flex-col gap-22">
       <div className="flex flex-col items-center justify-between gap-16 rounded-lg bg-white p-20 sm:flex-row">
         <Input
           placeholder="جستجوی میزکار..."
@@ -65,19 +62,7 @@ const Workspaces = () => {
 
       {isLoading && !isPlaceholderData ? (
         <PageLoader className="rounded-lg bg-white" />
-      ) : workspaces.length === 0 ? (
-        <div className="flex min-h-400 w-full flex-col items-center justify-center gap-20 rounded-lg bg-white p-24">
-          <div className="flex size-80 items-center justify-center rounded-full bg-gray-50 ring-8 ring-gray-50/50">
-            <Icon
-              name="icon-[basil--folder-open-outline]"
-              className="size-40 text-gray-400"
-            />
-          </div>
-          <p className="text-body-md-400 text-center text-gray-500">
-            هیچ میزکاری یافت نشد. برای شروع یک میزکار جدید ایجاد کنید.
-          </p>
-        </div>
-      ) : (
+      ) : workspaces.length ? (
         <>
           <div className="grid grid-cols-1 gap-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {workspaces.map((workspace) => (
@@ -91,7 +76,25 @@ const Workspaces = () => {
             onPageChange={setPage}
           />
         </>
+      ) : (
+        <EmptyWorkspaces />
       )}
+    </div>
+  );
+};
+
+const EmptyWorkspaces = () => {
+  return (
+    <div className="flex min-h-400 w-full flex-col items-center justify-center gap-20 rounded-lg bg-white p-24">
+      <div className="flex size-80 items-center justify-center rounded-full bg-gray-50 ring-8 ring-gray-50/50">
+        <Icon
+          name="icon-[basil--folder-open-outline]"
+          className="size-40 text-gray-400"
+        />
+      </div>
+      <p className="text-body-md-400 text-center text-gray-500">
+        هیچ میزکاری یافت نشد. برای شروع یک میزکار جدید ایجاد کنید.
+      </p>
     </div>
   );
 };

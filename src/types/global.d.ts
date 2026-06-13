@@ -28,6 +28,17 @@ declare global {
     };
   };
 
+  type ApiResponseWithOptionalPagination<T> = ApiResponse<T> & {
+    pagination?: {
+      page: number;
+      pages: number;
+      total: number;
+      limit: number;
+      next_page: Nullable<number>;
+      prev_page: Nullable<number>;
+    };
+  };
+
   type ApiErrorResponse = {
     status_code: number;
     error: string;
@@ -41,4 +52,4 @@ declare global {
   };
 }
 
-export {};
+export type {};

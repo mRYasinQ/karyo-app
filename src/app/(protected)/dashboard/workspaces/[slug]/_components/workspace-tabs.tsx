@@ -5,6 +5,8 @@ import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import type { PrivateWorkspaceData } from '@/services/workpsace/types';
 
+import WorkspaceMembers from './workspace-members';
+
 const WORKSPACE_TABS = [
   { id: 'projects', label: 'پروژه‌ها' },
   { id: 'members', label: 'اعضا' },
@@ -14,7 +16,7 @@ type TabId = (typeof WORKSPACE_TABS)[number]['id'];
 
 type WorkspaceTabsProps = PrivateWorkspaceData;
 
-const WorkspaceTabs = ({}: WorkspaceTabsProps) => {
+const WorkspaceTabs = ({ slug, workspace_role }: WorkspaceTabsProps) => {
   const [activeTab, setActiveTab] = useState<TabId>('projects');
 
   return (
@@ -42,9 +44,7 @@ const WorkspaceTabs = ({}: WorkspaceTabsProps) => {
             لیست پروژه‌ها به زودی...
           </div>
         ) : (
-          <div className="text-body-md-400 text-gray-500">
-            لیست اعضای میزکار به زودی...
-          </div>
+          <WorkspaceMembers slug={slug} currentUserRole={workspace_role} />
         )}
       </div>
     </div>
