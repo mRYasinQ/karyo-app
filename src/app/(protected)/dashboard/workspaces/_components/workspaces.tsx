@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
+import EmptyState from '@/components/common/empty-state';
 import Icon from '@/components/common/icon';
 import Pagination from '@/components/common/pagination';
 import Button from '@/components/ui/button';
@@ -77,24 +78,12 @@ const Workspaces = () => {
           />
         </>
       ) : (
-        <EmptyWorkspaces />
-      )}
-    </div>
-  );
-};
-
-const EmptyWorkspaces = () => {
-  return (
-    <div className="flex min-h-400 w-full flex-col items-center justify-center gap-20 rounded-lg bg-white p-24">
-      <div className="flex size-80 items-center justify-center rounded-full bg-gray-50 ring-8 ring-gray-50/50">
-        <Icon
-          name="icon-[basil--folder-open-outline]"
-          className="size-40 text-gray-400"
+        <EmptyState
+          icon="icon-[basil--folder-open-outline]"
+          description="هیچ میزکاری یافت نشد. برای شروع یک میزکار جدید ایجاد کنید."
+          className="min-h-400 bg-white"
         />
-      </div>
-      <p className="text-body-md-400 text-center text-gray-500">
-        هیچ میزکاری یافت نشد. برای شروع یک میزکار جدید ایجاد کنید.
-      </p>
+      )}
     </div>
   );
 };

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import dynamic from 'next/dynamic';
 
 import PageLoader from '@/app/(protected)/dashboard/_components/page-loader';
+import EmptyState from '@/components/common/empty-state';
 import Icon from '@/components/common/icon';
 import Button from '@/components/ui/button';
 import Input from '@/components/ui/input';
@@ -79,7 +80,10 @@ const WorkspaceMembers = ({ slug, currentUserRole }: WorkspaceMembersProps) => {
           ))}
         </div>
       ) : (
-        <EmptyWorkspaceMembers />
+        <EmptyState
+          description="هیچ عضوی یافت نشد."
+          className="text-body-md-500 py-40"
+        />
       )}
 
       <InviteMemberDialog
@@ -87,14 +91,6 @@ const WorkspaceMembers = ({ slug, currentUserRole }: WorkspaceMembersProps) => {
         isOpen={isInviteDialogOpen}
         onOpenChange={setIsInviteDialogOpen}
       />
-    </div>
-  );
-};
-
-const EmptyWorkspaceMembers = () => {
-  return (
-    <div className="text-body-md-500 py-40 text-center text-gray-500">
-      هیچ عضوی یافت نشد.
     </div>
   );
 };

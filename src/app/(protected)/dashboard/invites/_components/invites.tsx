@@ -2,11 +2,11 @@
 
 import { useState } from 'react';
 
-import PageLoader from '@/app/(protected)/dashboard/_components/page-loader';
-import Icon from '@/components/common/icon';
+import EmptyState from '@/components/common/empty-state';
 import Pagination from '@/components/common/pagination';
 import WorkspaceInviteService from '@/services/workspace-invite';
 
+import PageLoader from '../../_components/page-loader';
 import InviteCard from './invite-card';
 
 import { useQuery } from '@tanstack/react-query';
@@ -32,7 +32,15 @@ const Invites = () => {
     return <PageLoader className="rounded-lg bg-white" />;
   }
 
-  if (!invitations.length) return <EmptyInvites />;
+  if (!invitations.length) {
+    return (
+      <EmptyState
+        icon="icon-[basil--envelope-open-outline]"
+        description="در حال حاضر هیچ دعوتنامه‌ای ندارید."
+        className="min-h-400 bg-white"
+      />
+    );
+  }
 
   return (
     <div className="flex flex-col gap-16">
@@ -47,22 +55,6 @@ const Invites = () => {
         pages={pagination?.pages ?? 1}
         onPageChange={setPage}
       />
-    </div>
-  );
-};
-
-const EmptyInvites = () => {
-  return (
-    <div className="flex min-h-400 w-full flex-col items-center justify-center gap-20 rounded-lg bg-white p-24">
-      <div className="flex size-80 items-center justify-center rounded-full bg-gray-50 ring-8 ring-gray-50/50">
-        <Icon
-          name="icon-[basil--envelope-open-outline]"
-          className="size-40 text-gray-400"
-        />
-      </div>
-      <p className="text-body-md-400 text-center text-gray-500">
-        در حال حاضر هیچ دعوت‌نامه‌ای ندارید.
-      </p>
     </div>
   );
 };
