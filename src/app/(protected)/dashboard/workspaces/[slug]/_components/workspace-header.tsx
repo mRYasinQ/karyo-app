@@ -22,6 +22,7 @@ const WorkspaceHeader = ({
           fallback={name.charAt(0)}
           width={64}
           height={64}
+          priority
           className="size-64 bg-white"
         />
         <div className="flex flex-col gap-4">

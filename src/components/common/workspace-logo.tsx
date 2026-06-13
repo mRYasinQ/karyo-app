@@ -9,6 +9,7 @@ type WorkspaceLogoProps = {
   height?: number;
   fallback: string;
   className?: string;
+  priority?: boolean;
 };
 
 const WorkspaceLogo = ({
@@ -18,6 +19,7 @@ const WorkspaceLogo = ({
   height = 48,
   fallback,
   className,
+  priority = false,
 }: WorkspaceLogoProps) => {
   if (src) {
     return (
@@ -26,6 +28,7 @@ const WorkspaceLogo = ({
         alt={alt}
         width={width}
         height={height}
+        priority={priority}
         className={cn('h-full w-full rounded-xl object-cover', className)}
       />
     );
