@@ -1,7 +1,14 @@
+import { useRouter } from 'next/navigation';
+
 import Icon from '@/components/common/icon';
 import WorkspaceLogo from '@/components/common/workspace-logo';
 import Button from '@/components/ui/button';
+import ROUTES from '@/lib/routes';
+import toast from '@/lib/toast';
 import type { PrivateWorkspaceData } from '@/services/workpsace/types';
+import WorkspaceMemberService from '@/services/workspace-member';
+
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 type WorkspaceHeaderProps = PrivateWorkspaceData;
 
@@ -11,7 +18,28 @@ const WorkspaceHeader = ({
   logo,
   workspace_role,
 }: WorkspaceHeaderProps) => {
+  const router = useRouter();
+
+  const queryClient = useQueryClient();
+
   const isOwner = workspace_role === 'owner';
+
+  const { mutate: leaveWorkspace, isPending } = useMutation({
+    mutationFn: () => WorkspaceMemberService.leaveWorkspace(slug),
+    onSuccess: async () => {
+      toast.success('با موفقیت از میزکار خارج شدید.');
+      await queryClient.invalidateQueries({ queryKey: ['workspaces'] });
+      router.push(ROUTES.DASHBOARD.WORKSPACES.MAIN);
+    },
+    onError: () => {
+      toast.error('مشکلی در خروج از میزکار به وجود آمد.');
+    },
+  });
+
+  const leaveWorkspaceHandler = () => {
+    if (isPending) return;
+    leaveWorkspace();
+  };
 
   return (
     <div className="flex flex-col gap-20 rounded-lg bg-white p-24 sm:flex-row sm:items-center sm:justify-between">
@@ -33,20 +61,29 @@ const WorkspaceHeader = ({
         </div>
       </div>
 
-      <Button
-        variant="secondary"
-        className="flex items-center gap-8 max-sm:w-full"
-      >
-        <Icon
-          name={
-            isOwner
-              ? 'icon-[basil--settings-alt-solid]'
-              : 'icon-[basil--logout-solid]'
-          }
-          className="ml-8 size-20"
-        />
-        {isOwner ? 'تنظیمات میزکار' : 'خروج از میزکار'}
-      </Button>
+      <div className="flex items-center gap-12 max-sm:w-full">
+        {isOwner ? (
+          <Button
+            variant="secondary"
+            className="flex items-center gap-8 max-sm:w-full"
+          >
+            <Icon
+              name="icon-[basil--settings-alt-solid]"
+              className="ml-8 size-20"
+            />
+            تنظیمات میزکار
+          </Button>
+        ) : (
+          <Button
+            variant="secondary"
+            className="flex items-center gap-8 max-sm:w-full"
+            onClick={leaveWorkspaceHandler}
+          >
+            <Icon name="icon-[basil--logout-solid]" className="ml-8 size-20" />
+            خروج از میزکار
+          </Button>
+        )}
+      </div>
     </div>
   );
 };
