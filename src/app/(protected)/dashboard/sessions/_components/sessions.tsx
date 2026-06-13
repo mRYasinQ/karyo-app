@@ -43,12 +43,13 @@ const Sessions = () => {
 
   return (
     <div className="flex flex-col gap-16">
-      <div className="flex items-center justify-between rounded-lg bg-white p-20">
+      <div className="flex flex-col gap-16 rounded-lg bg-white p-20 sm:flex-row sm:items-center sm:justify-between">
         <span className="text-subheading-03 text-gray-900">
           لیست دستگاه‌های متصل
         </span>
         <Button
           variant="secondary"
+          className="max-sm:w-full"
           onClick={clearSessionsHandler}
           isLoading={isPending}
           disabled={sessions.length <= 1}
