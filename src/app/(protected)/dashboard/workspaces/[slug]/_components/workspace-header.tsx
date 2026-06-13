@@ -51,7 +51,7 @@ const WorkspaceHeader = ({
           width={64}
           height={64}
           priority
-          className="size-64 bg-white"
+          className="size-64"
         />
         <div className="flex flex-col gap-4">
           <h2 className="text-subheading-04 text-gray-900">{name}</h2>
