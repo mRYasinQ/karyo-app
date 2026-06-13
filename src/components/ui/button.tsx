@@ -15,6 +15,8 @@ const buttonVariants = cva(
       variant: {
         primary: '',
         secondary: '',
+        error: '',
+        success: '',
       },
       mode: {
         solid: 'text-white!',
@@ -75,6 +77,54 @@ const buttonVariants = cva(
         mode: 'ghost',
         className:
           'text-gray-900! hover:bg-gray-50 hover:text-gray-800! disabled:bg-white! disabled:text-gray-200!',
+      },
+      {
+        variant: 'error',
+        mode: 'solid',
+        className:
+          'bg-error-600 hover:bg-error-700 disabled:bg-error-200! disabled:text-white!',
+      },
+      {
+        variant: 'error',
+        mode: 'soft',
+        className:
+          'bg-error-50 text-error-600! hover:bg-error-100 hover:text-error-700! disabled:bg-error-50! disabled:text-error-300!',
+      },
+      {
+        variant: 'error',
+        mode: 'outline',
+        className:
+          'border-error-600! bg-transparent text-error-600! hover:bg-error-50 hover:text-error-700! hover:border-error-700 disabled:bg-transparent! disabled:text-error-200! disabled:border-error-200!',
+      },
+      {
+        variant: 'error',
+        mode: 'ghost',
+        className:
+          'text-error-600! hover:bg-error-50 hover:text-error-700! disabled:bg-white! disabled:text-error-200!',
+      },
+      {
+        variant: 'success',
+        mode: 'solid',
+        className:
+          'bg-success-600 hover:bg-success-700 disabled:bg-success-200! disabled:text-white!',
+      },
+      {
+        variant: 'success',
+        mode: 'soft',
+        className:
+          'bg-success-50 text-success-600! hover:bg-success-100 hover:text-success-700! disabled:bg-success-50! disabled:text-success-300!',
+      },
+      {
+        variant: 'success',
+        mode: 'outline',
+        className:
+          'border-success-600! bg-transparent text-success-600! hover:bg-success-50 hover:text-success-700! hover:border-success-700 disabled:bg-transparent! disabled:text-success-200! disabled:border-success-200!',
+      },
+      {
+        variant: 'success',
+        mode: 'ghost',
+        className:
+          'text-success-600! hover:bg-success-50 hover:text-success-700! disabled:bg-white! disabled:text-success-200!',
       },
     ],
     defaultVariants: {
