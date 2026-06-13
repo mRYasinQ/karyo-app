@@ -16,6 +16,7 @@ const ROUTES = {
       CREATE: '/dashboard/workspaces/create',
     },
     INVITES: '/dashboard/invites',
+    SESSIONS: '/dashboard/sessions',
   },
 } as const;
 

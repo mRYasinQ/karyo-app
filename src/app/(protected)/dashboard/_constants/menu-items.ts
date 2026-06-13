@@ -12,6 +12,11 @@ const MENU_ITEMS = [
     icon: 'icon-[basil--user-solid]',
   },
   {
+    title: 'دستگاه‌های من',
+    href: ROUTES.DASHBOARD.SESSIONS,
+    icon: 'icon-[basil--shield-solid]',
+  },
+  {
     title: 'میزکار‌های من',
     href: ROUTES.DASHBOARD.WORKSPACES.MAIN,
     icon: 'icon-[basil--rows-solid]',
