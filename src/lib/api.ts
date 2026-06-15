@@ -33,7 +33,10 @@ api.interceptors.response.use(
       }
 
       if (statusCode === 403) {
-        if (requestUrl.startsWith('/workspaces')) {
+        if (
+          requestUrl.startsWith('/workspaces') ||
+          requestUrl.startsWith('/projects')
+        ) {
           window.location.href = ROUTES.DASHBOARD.WORKSPACES.MAIN;
         } else {
           window.location.href = ROUTES.DASHBOARD.MAIN;
