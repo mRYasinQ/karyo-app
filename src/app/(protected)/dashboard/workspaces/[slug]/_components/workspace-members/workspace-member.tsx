@@ -119,7 +119,7 @@ const WorkspaceMember = ({
       </div>
 
       <div className="flex items-center gap-8">
-        {canChangeRole(workspace_role) ? (
+        {is_active && canChangeRole(workspace_role) ? (
           <Select
             value={workspace_role}
             onValueChange={roleChangeHandler}

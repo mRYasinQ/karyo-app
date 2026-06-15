@@ -15,6 +15,11 @@ const ROUTES = {
       SHOW: (slug: string) => `/dashboard/workspaces/${slug}`,
       CREATE: '/dashboard/workspaces/create',
     },
+    PROJECTS: {
+      SHOW: (workspaceSlug: string, projectSlug: string) => {
+        return `/dashboard/workspaces/${workspaceSlug}/projects/${projectSlug}`;
+      },
+    },
     INVITES: '/dashboard/invites',
     SESSIONS: '/dashboard/sessions',
   },

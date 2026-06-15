@@ -21,8 +21,6 @@ type ProfileData = {
   birthday: Nullable<string>;
 };
 
-type ProfileResponse = ApiResponse<ProfileData>;
-
 type UpdateProfilePayload = {
   first_name?: string;
   last_name?: string;
@@ -32,5 +30,7 @@ type UpdateProfilePayload = {
   birthday?: string;
   avatar?: Nullable<File>;
 };
+
+type ProfileResponse = ApiResponse<ProfileData>;
 
 export type { ProfileData, ProfileResponse, RoleData, UpdateProfilePayload };
