@@ -8,6 +8,7 @@ type WorkspaceMemberData = {
   avatar: Nullable<string>;
   birthday: Nullable<string>;
   workspace_role: WorkspaceRole;
+  is_active: boolean;
   joined_at: string;
 };
 

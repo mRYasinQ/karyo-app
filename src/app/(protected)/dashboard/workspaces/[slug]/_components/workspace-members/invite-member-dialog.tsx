@@ -13,7 +13,7 @@ import {
 } from '@/validations/workspace';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 
 type InviteMemberDialogProps = {
@@ -27,6 +27,8 @@ const InviteMemberDialog = ({
   isOpen,
   onOpenChange,
 }: InviteMemberDialogProps) => {
+  const queryClient = useQueryClient();
+
   const {
     register,
     handleSubmit,
@@ -44,9 +46,13 @@ const InviteMemberDialog = ({
   const { mutate, isPending } = useMutation({
     mutationFn: (payload: InviteMemberData) =>
       WorkspaceInviteService.inviteUser(slug, payload),
-    onSuccess: () => {
+    onSuccess: async () => {
       toast.success('دعوت‌نامه با موفقیت ارسال شد.');
       onOpenChange(false);
+
+      await queryClient.invalidateQueries({
+        queryKey: ['workspace-members', slug],
+      });
     },
     onError: () => {
       toast.error('مشکلی در ارسال دعوت‌نامه به وجود آمد.');

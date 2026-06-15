@@ -1,3 +1,5 @@
+'use client';
+
 import Icon from '@/components/common/icon';
 import Avatar from '@/components/ui/avatar';
 import IconButton from '@/components/ui/icon-button';
@@ -35,6 +37,7 @@ const WorkspaceMember = ({
   username,
   avatar,
   workspace_role,
+  is_active,
 }: WorkspaceMemberProps) => {
   const queryClient = useQueryClient();
 
@@ -105,7 +108,14 @@ const WorkspaceMember = ({
           alt={fullName}
           fallback={fullName}
         />
-        <span className="text-body-md-500 text-gray-900">{fullName}</span>
+        <div className="flex flex-col gap-4">
+          <span className="text-body-md-500 text-gray-900">{fullName}</span>
+          {!is_active && (
+            <span className="text-body-sm-400 text-gray-400">
+              درحال دعوت...
+            </span>
+          )}
+        </div>
       </div>
 
       <div className="flex items-center gap-8">

@@ -22,7 +22,7 @@ const WorkspaceSettingsDialog = dynamic(
 type WorkspaceHeaderProps = PrivateWorkspaceData;
 
 const WorkspaceHeader = (props: WorkspaceHeaderProps) => {
-  const { name, slug, logo, workspace_role } = props;
+  const { name, slug, logo, description, workspace_role } = props;
 
   const router = useRouter();
 
@@ -64,9 +64,9 @@ const WorkspaceHeader = (props: WorkspaceHeaderProps) => {
           />
           <div className="flex flex-col gap-4">
             <h2 className="text-subheading-04 text-gray-900">{name}</h2>
-            <span className="text-body-sm-400 text-gray-500" dir="ltr">
-              @{slug}
-            </span>
+            {description && (
+              <p className="text-body-sm-400 text-gray-500">{description}</p>
+            )}
           </div>
         </div>
 

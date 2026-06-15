@@ -183,7 +183,7 @@ const WorkspaceSettingsDialog = ({
           <div className="flex flex-col items-center gap-4 sm:items-start sm:pt-8">
             <span className="text-body-md-500 text-gray-900">نشان میزکار</span>
             <span className="text-body-sm-400 text-center text-gray-500 sm:text-right">
-              فرمت‌های مجاز: png، jpg. حداکثر حجم: ۱ مگابایت
+              فرمت‌های مجاز: png، jpg و webp. حداکثر حجم: 1 مگابایت
             </span>
           </div>
         </div>
