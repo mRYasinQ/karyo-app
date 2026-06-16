@@ -48,11 +48,11 @@ const WorkspaceProject = ({
                 {name}
               </h3>
               {is_archived ? (
-                <span className="shrink-0 rounded-full bg-gray-100 px-8 py-2 text-[11px] font-medium text-gray-600">
+                <span className="text-caption-03 shrink-0 rounded-full bg-gray-100 px-8 py-4 font-medium text-gray-600">
                   بایگانی شده
                 </span>
               ) : (
-                <span className="shrink-0 rounded-full bg-gray-100 px-8 py-2 text-[11px] font-medium text-gray-600">
+                <span className="text-caption-03 shrink-0 rounded-full bg-gray-100 px-8 py-4 font-medium text-gray-600">
                   بایگانی نشده
                 </span>
               )}

@@ -212,7 +212,7 @@ const WorkspaceSettingsDialog = ({
           </label>
         </div>
 
-        <Button type="submit" isLoading={isUpdating} className="w-full">
+        <Button type="submit" isLoading={isUpdating}>
           ذخیره تغییرات
         </Button>
       </form>

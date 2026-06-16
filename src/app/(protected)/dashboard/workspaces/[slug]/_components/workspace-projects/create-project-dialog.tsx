@@ -144,7 +144,7 @@ const CreateProjectDialog = ({
           </label>
         </div>
 
-        <Button type="submit" isLoading={isPending} className="mt-8 w-full">
+        <Button type="submit" isLoading={isPending}>
           ایجاد پروژه
         </Button>
       </form>

@@ -1,3 +1,5 @@
+import type { WorkspaceRole } from '../workpsace/types';
+
 type ProjectData = {
   id: number;
   created_at: string;
@@ -15,6 +17,7 @@ type ProjectData = {
     name: string;
     slug: string;
     logo: Nullable<string>;
+    workspace_role: WorkspaceRole;
     description: Nullable<string>;
   };
 };
