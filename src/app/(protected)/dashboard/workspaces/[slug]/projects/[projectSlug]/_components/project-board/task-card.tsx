@@ -14,9 +14,10 @@ type TaskCardProps = {
   task: TaskData;
   provided: DraggableProvided;
   snapshot: DraggableStateSnapshot;
+  onClick?: () => void;
 };
 
-const TaskCard = ({ task, provided, snapshot }: TaskCardProps) => {
+const TaskCard = ({ task, provided, snapshot, onClick }: TaskCardProps) => {
   return (
     <div
       ref={(el) => {
@@ -24,8 +25,10 @@ const TaskCard = ({ task, provided, snapshot }: TaskCardProps) => {
       }}
       {...provided.draggableProps}
       {...provided.dragHandleProps}
+      onClick={onClick}
       className={cn(
         'group flex flex-col gap-12 rounded-lg border border-gray-100 bg-white p-14 transition-all duration-200 ease-in-out hover:border-gray-300 hover:shadow-md',
+        onClick && 'cursor-pointer',
         snapshot.isDragging &&
           'border-primary-500 ring-primary-100 scale-105 rotate-2 shadow-xl ring-2',
       )}

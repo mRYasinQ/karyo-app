@@ -53,8 +53,8 @@ const Select = ({
       </SelectPrimitive.Trigger>
 
       <SelectPrimitive.Portal>
-        <SelectPrimitive.Positioner sideOffset={8}>
-          <SelectPrimitive.Popup className="z-50 min-w-(--anchor-width) origin-(--transform-origin) rounded-md border border-gray-100 bg-white p-4 shadow-lg transition-all outline-none data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0">
+        <SelectPrimitive.Positioner className="z-100" sideOffset={8}>
+          <SelectPrimitive.Popup className="z-100 min-w-(--anchor-width) origin-(--transform-origin) rounded-md border border-gray-100 bg-white p-4 shadow-lg transition-all outline-none data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0">
             {options.map(({ label, value }) => (
               <SelectPrimitive.Item
                 key={value}

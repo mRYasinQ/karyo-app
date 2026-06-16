@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 
 import PageLoader from '@/app/(protected)/dashboard/_components/page-loader';
 import Icon from '@/components/common/icon';
@@ -20,6 +21,14 @@ import {
 } from '@hello-pangea/dnd';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
+const CreateTaskDialog = dynamic(() => import('./create-task-dialog'), {
+  ssr: false,
+});
+
+const UpdateTaskDialog = dynamic(() => import('./update-task-dialog'), {
+  ssr: false,
+});
+
 type ProjectBoardProps = {
   workspaceId: number;
   projectId: number;
@@ -38,6 +47,12 @@ const ProjectBoard = ({
   projectId,
   workspaceRole,
 }: ProjectBoardProps) => {
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState<boolean>(false);
+  const [createModalStatus, setCreateModalStatus] =
+    useState<TaskStatus>('todo');
+
+  const [updateModalTask, setUpdateModalTask] = useState<TaskData | null>(null);
+
   const [columns, setColumns] = useState<BoardState>({
     todo: [],
     in_progress: [],
@@ -138,79 +153,119 @@ const ProjectBoard = ({
     updateTaskStatus({ taskId, status: destStatus });
   };
 
+  const openCreateModalHandler = (status: TaskStatus) => {
+    setCreateModalStatus(status);
+    setIsCreateModalOpen(true);
+  };
+
+  const openUpdateModalHandler = (task: TaskData) => {
+    if (!canEdit) return;
+    setUpdateModalTask(task);
+  };
+
   if (isLoading) {
     return <PageLoader className="rounded-lg bg-white" />;
   }
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <div className="flex items-start gap-20 overflow-x-auto pb-12">
-        {TASK_STATUSES.map((statusObj) => {
-          const status = statusObj.value;
-          const tasks = columns[status] || [];
+    <>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <div className="flex items-start gap-20 overflow-x-auto pb-12">
+          {TASK_STATUSES.map((statusObj) => {
+            const status = statusObj.value;
+            const tasks = columns[status] || [];
 
-          return (
-            <div
-              key={status}
-              className="flex w-xs shrink-0 flex-col gap-16 rounded-xl border border-gray-200 bg-gray-50 p-16 shadow-sm"
-            >
-              <div className="flex items-center justify-between px-4 pb-4">
-                <h3 className="text-body-md-600 text-gray-800">
-                  {statusObj.name}
-                </h3>
-                <span className="text-caption-02 flex h-24 min-w-24 items-center justify-center rounded-full bg-gray-200 px-8 font-medium text-gray-600">
-                  {tasks.length}
-                </span>
-              </div>
+            return (
+              <div
+                key={status}
+                className="flex w-xs shrink-0 flex-col gap-16 rounded-xl border border-gray-200 bg-gray-50 p-16 shadow-sm"
+              >
+                <div className="flex items-center justify-between px-4 pb-4">
+                  <h3 className="text-body-md-600 text-gray-800">
+                    {statusObj.name}
+                  </h3>
+                  <span className="text-caption-02 flex h-24 min-w-24 items-center justify-center rounded-full bg-gray-200 px-8 font-medium text-gray-600">
+                    {tasks.length}
+                  </span>
+                </div>
 
-              {status === 'todo' && canEdit && (
-                <Button
-                  variant="secondary"
-                  mode="soft"
-                  className="w-full justify-start border border-dashed border-gray-300 bg-white hover:border-gray-400 hover:bg-gray-50"
-                >
-                  <Icon
-                    name="icon-[basil--plus-solid]"
-                    className="mr-4 size-20 text-gray-500"
-                  />
-                  <span className="text-gray-600">ایجاد تسک جدید</span>
-                </Button>
-              )}
-
-              <Droppable droppableId={status}>
-                {(provided) => (
-                  <div
-                    ref={(el) => {
-                      provided.innerRef(el);
-                    }}
-                    {...provided.droppableProps}
-                    className="flex min-h-150 flex-col gap-10"
+                {status === 'todo' && canEdit && (
+                  <Button
+                    variant="secondary"
+                    mode="soft"
+                    className="w-full justify-start border border-dashed border-gray-300 bg-white hover:border-gray-400 hover:bg-gray-50"
+                    onClick={() => openCreateModalHandler(status)}
                   >
-                    {tasks.map((task, index) => (
-                      <Draggable
-                        key={task.id}
-                        draggableId={task.id.toString()}
-                        index={index}
-                        isDragDisabled={!canDrag}
-                      >
-                        {(provided, snapshot) => (
-                          <TaskCard
-                            task={task}
-                            provided={provided}
-                            snapshot={snapshot}
-                          />
-                        )}
-                      </Draggable>
-                    ))}
-                    {provided.placeholder}
-                  </div>
+                    <Icon
+                      name="icon-[basil--plus-solid]"
+                      className="mr-4 size-20 text-gray-500"
+                    />
+                    <span className="text-gray-600">ایجاد وظیفه جدید</span>
+                  </Button>
                 )}
-              </Droppable>
-            </div>
-          );
-        })}
-      </div>
-    </DragDropContext>
+
+                <Droppable droppableId={status}>
+                  {(provided) => (
+                    <div
+                      ref={(el) => {
+                        provided.innerRef(el);
+                      }}
+                      {...provided.droppableProps}
+                      className="flex min-h-150 flex-col gap-10"
+                    >
+                      {tasks.map((task, index) => (
+                        <Draggable
+                          key={task.id}
+                          draggableId={task.id.toString()}
+                          index={index}
+                          isDragDisabled={!canDrag}
+                        >
+                          {(provided, snapshot) => (
+                            <TaskCard
+                              task={task}
+                              provided={provided}
+                              snapshot={snapshot}
+                              onClick={
+                                canEdit
+                                  ? () => openUpdateModalHandler(task)
+                                  : undefined
+                              }
+                            />
+                          )}
+                        </Draggable>
+                      ))}
+                      {provided.placeholder}
+                    </div>
+                  )}
+                </Droppable>
+              </div>
+            );
+          })}
+        </div>
+      </DragDropContext>
+
+      {canEdit && (
+        <CreateTaskDialog
+          isOpen={isCreateModalOpen}
+          onOpenChange={setIsCreateModalOpen}
+          workspaceId={workspaceId}
+          projectId={projectId}
+          defaultStatus={createModalStatus}
+        />
+      )}
+
+      {canEdit && updateModalTask && (
+        <UpdateTaskDialog
+          isOpen={Boolean(updateModalTask)}
+          onOpenChange={(open) => {
+            if (!open) setUpdateModalTask(null);
+          }}
+          workspaceId={workspaceId}
+          projectId={projectId}
+          task={updateModalTask}
+        />
+      )}
+    </>
   );
 };
 
