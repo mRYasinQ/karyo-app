@@ -6,6 +6,7 @@ import PageLoader from '@/app/(protected)/dashboard/_components/page-loader';
 import ProjectService from '@/services/projects';
 import WorkspaceService from '@/services/workpsace';
 
+import ProjectBoard from './project-board';
 import ProjectHeader from './project-header';
 
 import { useQuery } from '@tanstack/react-query';
@@ -35,12 +36,11 @@ const ProjectDetail = () => {
   return (
     <div className="flex flex-col gap-24">
       <ProjectHeader {...project} />
-
-      <div className="rounded-lg bg-white p-20">
-        <span className="text-body-md-500 text-gray-500">
-          بردهای تسک به زودی...
-        </span>
-      </div>
+      <ProjectBoard
+        workspaceId={workspace.id}
+        projectId={project.id}
+        workspaceRole={workspace.workspace_role}
+      />
     </div>
   );
 };
