@@ -13,6 +13,7 @@ import type { CreateTaskPayload, TaskStatus } from '@/services/task/types';
 import { type CreateTaskData, createTaskSchema } from '@/validations/task';
 
 import { TASK_STATUSES } from '../../_constants/task-status';
+import AssigneeSelect from './assignee-select';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -22,6 +23,7 @@ type CreateTaskDialogProps = {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
   workspaceId: number;
+  workspaceSlug: string;
   projectId: number;
   defaultStatus?: TaskStatus;
 };
@@ -35,6 +37,7 @@ const CreateTaskDialog = ({
   isOpen,
   onOpenChange,
   workspaceId,
+  workspaceSlug,
   projectId,
   defaultStatus = 'todo',
 }: CreateTaskDialogProps) => {
@@ -58,6 +61,7 @@ const CreateTaskDialog = ({
         description: '',
         status: defaultStatus,
         due_date: '',
+        assignee_id: null,
       });
     }
   }, [isOpen, defaultStatus, reset]);
@@ -117,6 +121,21 @@ const CreateTaskDialog = ({
             placeholder="توضیحات وظیفه"
             error={Boolean(errors.description)}
             errorMessage={errors.description?.message}
+          />
+        </label>
+
+        <label className="flex flex-col gap-16">
+          <span className="text-body-sm-400 text-gray-400">مسئول انجام</span>
+          <Controller
+            name="assignee_id"
+            control={control}
+            render={({ field }) => (
+              <AssigneeSelect
+                workspaceSlug={workspaceSlug}
+                value={field.value}
+                onChange={field.onChange}
+              />
+            )}
           />
         </label>
 

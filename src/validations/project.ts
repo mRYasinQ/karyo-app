@@ -23,7 +23,7 @@ const projectSchema = z.object({
     .optional(),
 });
 
-const createProjectSchema = projectSchema;
+const createProjectSchema = withCleanFields(projectSchema);
 const updateProjectSchema = withCleanFields(projectSchema.partial());
 
 type CreateProjectData = z.infer<typeof createProjectSchema>;

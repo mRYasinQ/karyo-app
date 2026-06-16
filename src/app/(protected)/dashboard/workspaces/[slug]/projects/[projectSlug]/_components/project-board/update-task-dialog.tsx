@@ -13,6 +13,7 @@ import type { TaskData, UpdateTaskPayload } from '@/services/task/types';
 import { type UpdateTaskData, updateTaskSchema } from '@/validations/task';
 
 import { TASK_STATUSES } from '../../_constants/task-status';
+import AssigneeSelect from './assignee-select';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -22,6 +23,7 @@ type UpdateTaskDialogProps = {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
   workspaceId: number;
+  workspaceSlug: string;
   projectId: number;
   task: TaskData;
 };
@@ -35,6 +37,7 @@ const UpdateTaskDialog = ({
   isOpen,
   onOpenChange,
   workspaceId,
+  workspaceSlug,
   projectId,
   task,
 }: UpdateTaskDialogProps) => {
@@ -57,6 +60,7 @@ const UpdateTaskDialog = ({
         title: task.title,
         description: task.description ?? '',
         status: task.status,
+        assignee_id: task.assignee?.id ?? null,
         due_date: task.due_date
           ? new Date(task.due_date).toISOString().split('T')[0]
           : '',
@@ -107,6 +111,10 @@ const UpdateTaskDialog = ({
       payload.due_date = null;
     }
 
+    if (data.description === '') {
+      payload.description = null;
+    }
+
     updateTask(payload);
   };
 
@@ -140,6 +148,22 @@ const UpdateTaskDialog = ({
             placeholder="توضیحات وظیفه"
             error={Boolean(errors.description)}
             errorMessage={errors.description?.message}
+          />
+        </label>
+
+        <label className="flex flex-col gap-16">
+          <span className="text-body-sm-400 text-gray-400">مسئول انجام</span>
+          <Controller
+            name="assignee_id"
+            control={control}
+            render={({ field }) => (
+              <AssigneeSelect
+                workspaceSlug={workspaceSlug}
+                value={field.value}
+                onChange={field.onChange}
+                initialUser={task.assignee}
+              />
+            )}
           />
         </label>
 

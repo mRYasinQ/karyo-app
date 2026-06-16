@@ -39,6 +39,7 @@ const ProjectDetail = () => {
       <ProjectBoard
         workspaceId={workspace.id}
         projectId={project.id}
+        workspaceSlug={workspace.slug}
         workspaceRole={workspace.workspace_role}
       />
     </div>

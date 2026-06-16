@@ -19,7 +19,7 @@ const taskSchema = z.object({
   assignee_id: z.number().nullable().optional(),
 });
 
-const createTaskSchema = taskSchema;
+const createTaskSchema = withCleanFields(taskSchema);
 const updateTaskSchema = withCleanFields(taskSchema.partial());
 
 type CreateTaskData = z.infer<typeof createTaskSchema>;

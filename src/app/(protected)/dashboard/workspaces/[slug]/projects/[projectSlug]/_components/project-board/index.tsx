@@ -32,6 +32,7 @@ const UpdateTaskDialog = dynamic(() => import('./update-task-dialog'), {
 type ProjectBoardProps = {
   workspaceId: number;
   projectId: number;
+  workspaceSlug: string;
   workspaceRole: string;
 };
 
@@ -45,6 +46,7 @@ type UpdateTaskStatusArgs = {
 const ProjectBoard = ({
   workspaceId,
   projectId,
+  workspaceSlug,
   workspaceRole,
 }: ProjectBoardProps) => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState<boolean>(false);
@@ -250,6 +252,7 @@ const ProjectBoard = ({
           onOpenChange={setIsCreateModalOpen}
           workspaceId={workspaceId}
           projectId={projectId}
+          workspaceSlug={workspaceSlug}
           defaultStatus={createModalStatus}
         />
       )}
@@ -262,6 +265,7 @@ const ProjectBoard = ({
           }}
           workspaceId={workspaceId}
           projectId={projectId}
+          workspaceSlug={workspaceSlug}
           task={updateModalTask}
         />
       )}
