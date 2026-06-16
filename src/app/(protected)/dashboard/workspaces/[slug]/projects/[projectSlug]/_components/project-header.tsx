@@ -29,7 +29,6 @@ const ProjectHeader = (props: ProjectHeaderProps) => {
 
   const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(false);
   const router = useRouter();
-
   const queryClient = useQueryClient();
 
   const isOwner = workspace_role === 'owner';
@@ -61,27 +60,26 @@ const ProjectHeader = (props: ProjectHeaderProps) => {
 
   return (
     <>
-      <div className="flex items-center justify-between rounded-lg bg-white p-20">
-        <div className="flex items-center gap-16">
-          <div className="bg-primary-50 text-primary-600 flex size-44 shrink-0 items-center justify-center rounded-xl">
-            <Icon name="icon-[basil--clipboard-outline]" className="size-24" />
+      <div className="flex flex-col gap-16 rounded-lg bg-white p-16 sm:flex-row sm:items-center sm:justify-between sm:p-20">
+        <div className="flex items-center gap-12 sm:gap-16">
+          <div className="bg-primary-50 text-primary-600 flex size-40 shrink-0 items-center justify-center rounded-xl sm:size-44">
+            <Icon
+              name="icon-[basil--clipboard-outline]"
+              className="size-20 sm:size-24"
+            />
           </div>
-          <div className="flex items-center gap-8">
-            <h3 className="text-subheading-02 text-gray-900">{name}</h3>
-            {is_archived ? (
-              <span className="text-caption-03 shrink-0 rounded-full bg-gray-100 px-8 py-4 font-medium text-gray-600">
-                بایگانی شده
-              </span>
-            ) : (
-              <span className="text-caption-03 shrink-0 rounded-full bg-gray-100 px-8 py-4 font-medium text-gray-600">
-                بایگانی نشده
-              </span>
-            )}
+          <div className="flex gap-6 max-sm:flex-col sm:items-center sm:gap-12">
+            <h3 className="text-body-lg-500 sm:text-subheading-02 break-all text-gray-900">
+              {name}
+            </h3>
+            <span className="text-caption-03 w-fit shrink-0 rounded-full bg-gray-100 px-8 py-4 font-medium text-gray-600">
+              {is_archived ? 'بایگانی شده' : 'بایگانی نشده'}
+            </span>
           </div>
         </div>
 
         {canEdit && (
-          <div className="flex items-center gap-8">
+          <div className="flex items-center justify-end gap-8 border-t border-gray-50 pt-12 sm:border-0 sm:pt-0">
             <IconButton
               variant="secondary"
               mode="ghost"
