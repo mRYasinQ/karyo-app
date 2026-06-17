@@ -1,7 +1,7 @@
 import Icon from '@/components/common/icon';
 import IconButton from '@/components/ui/icon-button';
 
-import MENU_ITEMS from './_constants/menu-items';
+import MENU_ITEMS from '../_constants/menu-items';
 import MenuItem from './menu-item';
 
 import { Drawer } from '@base-ui/react';

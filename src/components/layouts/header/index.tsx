@@ -1,4 +1,5 @@
-import Logo from './logo';
+import Logo from '@/components/common/logo';
+
 import Navbar from './navbar';
 
 const Header = () => {

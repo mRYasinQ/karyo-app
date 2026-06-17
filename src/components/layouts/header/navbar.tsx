@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Button from '@/components/ui/button';
 import ROUTES from '@/lib/routes';
 
-import MENU_ITEMS from './_constants/menu-items';
+import MENU_ITEMS from '../_constants/menu-items';
 import MenuItem from './menu-item';
 
 const NavbarDrawer = dynamic(() => import('./navbar-drawer'), {
