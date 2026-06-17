@@ -79,7 +79,7 @@ const WorkspaceHeader = (props: WorkspaceHeaderProps) => {
             >
               <Icon
                 name="icon-[basil--settings-alt-solid]"
-                className="ml-8 size-20"
+                className="icon-20 ml-8"
               />
               تنظیمات میزکار
             </Button>
@@ -91,7 +91,7 @@ const WorkspaceHeader = (props: WorkspaceHeaderProps) => {
             >
               <Icon
                 name="icon-[basil--logout-solid]"
-                className="ml-8 size-20"
+                className="icon-20 ml-8"
               />
               خروج از میزکار
             </Button>

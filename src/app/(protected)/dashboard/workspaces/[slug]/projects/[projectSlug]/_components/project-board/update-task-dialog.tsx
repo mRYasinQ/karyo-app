@@ -216,7 +216,7 @@ const UpdateTaskDialog = ({
             isLoading={isDeleting}
             disabled={isUpdating}
           >
-            <Icon name="icon-[basil--trash-solid]" className="ml-8 size-20" />
+            <Icon name="icon-[basil--trash-solid]" className="icon-20 ml-8" />
             حذف وظیفه
           </Button>
           <Button type="submit" isLoading={isUpdating} className="flex-1">

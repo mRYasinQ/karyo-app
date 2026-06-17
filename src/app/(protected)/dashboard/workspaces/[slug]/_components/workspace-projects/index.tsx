@@ -75,7 +75,7 @@ const WorkspaceProjects = ({
             className="max-sm:w-full"
             onClick={() => setIsCreateDialogOpen(true)}
           >
-            <Icon name="icon-[basil--add-solid]" className="ml-8 size-20" />
+            <Icon name="icon-[basil--add-solid]" className="icon-20 ml-8" />
             ایجاد پروژه جدید
           </Button>
         )}

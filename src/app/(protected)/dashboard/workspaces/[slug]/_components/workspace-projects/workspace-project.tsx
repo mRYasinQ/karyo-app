@@ -40,7 +40,7 @@ const WorkspaceProject = ({
             <div className="bg-primary-50 text-primary-600 flex size-40 shrink-0 items-center justify-center rounded-lg">
               <Icon
                 name="icon-[basil--clipboard-outline]"
-                className="size-24"
+                className="icon-24"
               />
             </div>
             <div className="flex items-center gap-8">
@@ -69,7 +69,7 @@ const WorkspaceProject = ({
 
       {(start_date || end_date) && (
         <div className="mt-auto flex items-center gap-6 border-t border-gray-50 pt-12 text-gray-400">
-          <Icon name="icon-[basil--calendar-outline]" className="size-16" />
+          <Icon name="icon-[basil--calendar-outline]" className="icon-16" />
           <span className="text-caption-02" dir="rtl">
             {start_date ? formatDate(start_date) : '---'} تا{' '}
             {end_date ? formatDate(end_date) : '---'}

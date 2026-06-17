@@ -54,7 +54,7 @@ const Sessions = () => {
           isLoading={isPending}
           disabled={sessions.length <= 1}
         >
-          <Icon name="icon-[basil--logout-solid]" className="ml-8 size-20" />
+          <Icon name="icon-[basil--logout-solid]" className="icon-20 ml-8" />
           خروج از سایر دستگاه‌ها
         </Button>
       </div>

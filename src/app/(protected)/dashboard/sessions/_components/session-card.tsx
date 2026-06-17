@@ -62,7 +62,7 @@ const SessionCard = ({
           size="sm"
           onClick={revokeSessionHandler}
         >
-          <Icon name="icon-[basil--logout-solid]" className="size-20" />
+          <Icon name="icon-[basil--logout-solid]" className="icon-20" />
         </IconButton>
       )}
     </div>

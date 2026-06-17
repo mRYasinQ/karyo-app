@@ -60,7 +60,7 @@ const WorkspaceMembers = ({ slug, currentUserRole }: WorkspaceMembersProps) => {
             className="flex items-center gap-8 max-sm:w-full"
             onClick={() => setIsInviteDialogOpen(true)}
           >
-            <Icon name="icon-[basil--plus-solid]" className="size-24" />
+            <Icon name="icon-[basil--plus-solid]" className="icon-24" />
             دعوت عضو جدید
           </Button>
         )}

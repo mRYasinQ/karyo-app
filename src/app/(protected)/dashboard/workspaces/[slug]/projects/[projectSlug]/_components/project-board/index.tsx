@@ -200,7 +200,7 @@ const ProjectBoard = ({
                   >
                     <Icon
                       name="icon-[basil--plus-solid]"
-                      className="mr-4 size-20 text-gray-500"
+                      className="icon-20 mr-4 text-gray-500"
                     />
                     <span className="text-gray-600">ایجاد وظیفه جدید</span>
                   </Button>

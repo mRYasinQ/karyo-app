@@ -143,7 +143,7 @@ const WorkspaceMember = ({
             variant="error"
             mode="ghost"
           >
-            <Icon name="icon-[basil--trash-solid]" className="size-20" />
+            <Icon name="icon-[basil--trash-solid]" className="icon-20" />
           </IconButton>
         )}
       </div>

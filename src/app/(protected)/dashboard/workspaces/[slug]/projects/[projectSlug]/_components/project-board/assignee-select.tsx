@@ -112,7 +112,7 @@ const AssigneeSelect = ({
               size="sm"
               onClick={clearHandler}
             >
-              <Icon name="icon-[basil--cross-solid]" className="size-20" />
+              <Icon name="icon-[basil--cross-solid]" className="icon-20" />
             </IconButton>
           }
         />
@@ -126,7 +126,9 @@ const AssigneeSelect = ({
           }}
           onFocus={() => setIsOpen(true)}
           placeholder={placeholder}
-          startIcon={<Icon name="icon-[basil--search-outline]" />}
+          startIcon={
+            <Icon name="icon-[basil--search-outline]" className="icon-16" />
+          }
           endIcon={
             isFetching ? (
               <div className="border-t-primary-500 size-16 animate-spin rounded-full border-2 border-gray-300" />

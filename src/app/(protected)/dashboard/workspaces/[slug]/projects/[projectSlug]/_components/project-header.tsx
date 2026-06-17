@@ -65,7 +65,7 @@ const ProjectHeader = (props: ProjectHeaderProps) => {
           <div className="bg-primary-50 text-primary-600 flex size-40 shrink-0 items-center justify-center rounded-xl sm:size-44">
             <Icon
               name="icon-[basil--clipboard-outline]"
-              className="size-20 sm:size-24"
+              className="icon-20 sm:icon-24"
             />
           </div>
           <div className="flex gap-6 max-sm:flex-col sm:items-center sm:gap-12">
@@ -86,7 +86,7 @@ const ProjectHeader = (props: ProjectHeaderProps) => {
               size="sm"
               onClick={openSettingsHandler}
             >
-              <Icon name="icon-[basil--settings-outline]" className="size-24" />
+              <Icon name="icon-[basil--settings-outline]" className="icon-24" />
             </IconButton>
             <IconButton
               variant="error"
@@ -94,7 +94,7 @@ const ProjectHeader = (props: ProjectHeaderProps) => {
               size="sm"
               onClick={removeProjectHandler}
             >
-              <Icon name="icon-[basil--trash-solid]" className="size-24" />
+              <Icon name="icon-[basil--trash-solid]" className="icon-24" />
             </IconButton>
           </div>
         )}

@@ -40,7 +40,7 @@ const TaskCard = ({ task, provided, snapshot, onClick }: TaskCardProps) => {
       <div className="mt-4 flex items-center justify-between border-t border-gray-50 pt-12">
         {task.due_date ? (
           <div className="flex items-center gap-6 text-gray-400 transition-colors group-hover:text-gray-500">
-            <Icon name="icon-[basil--calendar-outline]" className="size-16" />
+            <Icon name="icon-[basil--calendar-outline]" className="icon-16" />
             <span className="text-caption-02 tracking-wide">
               {new Date(task.due_date).toLocaleDateString('fa-IR', {
                 month: 'short',

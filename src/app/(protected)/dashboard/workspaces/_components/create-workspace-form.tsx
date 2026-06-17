@@ -97,7 +97,7 @@ const CreateWorkspaceForm = () => {
               onClick={logoClickHandler}
               className="flex size-32 cursor-pointer items-center justify-center rounded-full bg-white/20 text-white transition-colors hover:bg-white/40"
             >
-              <Icon name="icon-[basil--edit-solid]" className="size-20" />
+              <Icon name="icon-[basil--edit-solid]" className="icon-20" />
             </button>
             {previewImage && (
               <button
@@ -105,7 +105,7 @@ const CreateWorkspaceForm = () => {
                 onClick={deleteLogoHandler}
                 className="bg-error/80 hover:bg-error flex size-32 cursor-pointer items-center justify-center rounded-full text-white transition-colors"
               >
-                <Icon name="icon-[basil--trash-solid]" className="size-20" />
+                <Icon name="icon-[basil--trash-solid]" className="icon-20" />
               </button>
             )}
           </div>

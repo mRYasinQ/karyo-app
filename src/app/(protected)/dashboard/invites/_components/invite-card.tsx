@@ -15,8 +15,9 @@ const InviteCard = ({ name, slug, logo }: InviteItemProps) => {
   const queryClient = useQueryClient();
 
   const { mutate: respondToInvite, isPending } = useMutation({
-    mutationFn: (accept: boolean) =>
-      WorkspaceInviteService.respondToInvite(slug, { accept }),
+    mutationFn: (accept: boolean) => {
+      return WorkspaceInviteService.respondToInvite(slug, { accept });
+    },
     onSuccess: async (_, accept) => {
       toast.success(
         accept ? 'دعوت‌نامه با موفقیت پذیرفته شد.' : 'دعوت‌نامه رد شد.',
@@ -66,7 +67,7 @@ const InviteCard = ({ name, slug, logo }: InviteItemProps) => {
           className="max-sm:flex-1"
           onClick={decilineInviteHandler}
         >
-          <Icon name="icon-[basil--cross-solid]" className="ml-8 size-22" />
+          <Icon name="icon-[basil--cross-solid]" className="icon-22 ml-8" />
           رد دعوت
         </Button>
         <Button
@@ -74,7 +75,7 @@ const InviteCard = ({ name, slug, logo }: InviteItemProps) => {
           className="max-sm:flex-1"
           onClick={acceptInviteHandler}
         >
-          <Icon name="icon-[basil--check-solid]" className="ml-8 size-22" />
+          <Icon name="icon-[basil--check-solid]" className="icon-22 ml-8" />
           پذیرفتن
         </Button>
       </div>

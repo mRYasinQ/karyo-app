@@ -23,7 +23,7 @@ const Dialog = ({ title, isOpen, onOpenChange, children }: DialogProps) => {
             <DialogPrimitive.Close
               render={
                 <IconButton variant="secondary" mode="ghost">
-                  <Icon name="icon-[basil--cross-solid]" className="size-24" />
+                  <Icon name="icon-[basil--cross-solid]" className="icon-24" />
                 </IconButton>
               }
             />

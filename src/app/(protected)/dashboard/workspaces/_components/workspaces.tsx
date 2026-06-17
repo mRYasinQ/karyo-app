@@ -56,7 +56,7 @@ const Workspaces = () => {
           nativeButton={false}
           render={<Link href={ROUTES.DASHBOARD.WORKSPACES.CREATE} />}
         >
-          <Icon name="icon-[basil--plus-solid]" className="size-24" />
+          <Icon name="icon-[basil--plus-solid]" className="icon-24" />
           ایجاد میزکار
         </Button>
       </div>

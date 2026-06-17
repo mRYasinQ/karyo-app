@@ -47,7 +47,7 @@ const Select = ({
         </span>
         <SelectPrimitive.Icon
           render={
-            <Icon name="icon-[basil--caret-down-solid]" className="size-20" />
+            <Icon name="icon-[basil--caret-down-solid]" className="icon-20" />
           }
         />
       </SelectPrimitive.Trigger>
@@ -66,7 +66,7 @@ const Select = ({
                   render={
                     <Icon
                       name="icon-[basil--check-solid]"
-                      className="text-primary-600 size-20"
+                      className="text-primary-600 icon-20"
                     />
                   }
                 />

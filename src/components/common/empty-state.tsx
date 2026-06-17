@@ -18,7 +18,7 @@ const EmptyState = ({ description, icon, className }: EmptyStateProps) => {
     >
       {icon && (
         <div className="flex size-80 items-center justify-center rounded-full bg-gray-50 ring-8 ring-gray-50/50">
-          <Icon name={icon} className="size-40 text-gray-400" />
+          <Icon name={icon} className="icon-40 text-gray-400" />
         </div>
       )}
       <p className="text-body-md-400 text-center text-gray-500">

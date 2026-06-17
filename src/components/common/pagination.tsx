@@ -20,7 +20,7 @@ const Pagination = ({ page, pages, onPageChange }: PaginationProps) => {
         disabled={page === 1}
         onClick={() => onPageChange(Math.max(1, prevPage))}
       >
-        <Icon name="icon-[basil--caret-right-solid]" className="size-24" />
+        <Icon name="icon-[basil--caret-right-solid]" className="icon-24" />
       </IconButton>
 
       <span className="text-body-sm-500 text-gray-600">
@@ -32,7 +32,7 @@ const Pagination = ({ page, pages, onPageChange }: PaginationProps) => {
         disabled={page === pages}
         onClick={() => onPageChange(Math.min(pages, nextPage))}
       >
-        <Icon name="icon-[basil--caret-left-solid]" className="size-24" />
+        <Icon name="icon-[basil--caret-left-solid]" className="icon-24" />
       </IconButton>
     </div>
   );
