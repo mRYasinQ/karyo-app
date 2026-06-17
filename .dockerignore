@@ -1,0 +1,14 @@
+.env*
+.prettier*
+.gitignore
+*.md
+
+eslint.config.mjs
+Dockerfile
+
+.git
+.husky
+.vscode
+node_modules
+
+.next
