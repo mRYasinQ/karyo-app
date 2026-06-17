@@ -22,7 +22,7 @@ The project is containerized and ready for production or local development.
 #### 1. Clone the repository
 
 ```bash
-git clone [https://github.com/mryasinq/karyo-app.git](https://github.com/mryasinq/karyo-app.git)
+git clone https://github.com/mryasinq/karyo-app.git
 cd karyo-app
 ```
 
