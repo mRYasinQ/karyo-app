@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import Icon from '@/components/common/icon';
 
 const CONTACT_DETAILS = [
@@ -5,12 +7,13 @@ const CONTACT_DETAILS = [
     id: 'email',
     icon: 'icon-[basil--envelope-outline]',
     value: 'yasinabbasi.y20@gmail.com',
+    href: 'mailto:yasinabbasi.y20@gmail.com',
   },
   {
     id: 'phone',
     icon: 'icon-[basil--phone-outline]',
     value: '0930-221-9698',
-    dir: 'ltr',
+    href: 'tel:09302219698',
   },
   {
     id: 'location',
@@ -37,10 +40,20 @@ const Contact = () => {
               key={item.id}
               className="flex flex-col items-center justify-center gap-12 rounded-2xl border border-gray-100 bg-white p-24"
             >
-              <Icon name={item.icon} className="text-primary-500 icon-32" />
-              <span className="text-body-md-400 text-gray-600">
-                {item.value}
-              </span>
+              <Icon name={item.icon} className="icon-32 text-primary-500" />
+
+              {'href' in item ? (
+                <Link
+                  href={item.href}
+                  className="text-body-md-400 hover:text-primary-500 text-gray-600 transition-colors"
+                >
+                  {item.value}
+                </Link>
+              ) : (
+                <span className="text-body-md-400 text-gray-600">
+                  {item.value}
+                </span>
+              )}
             </div>
           ))}
         </div>
