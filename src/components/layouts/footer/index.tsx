@@ -7,7 +7,7 @@ import SocialItem from './social-item';
 const SOCIAL_ITEMS = [
   {
     name: 'Instagram',
-    link: '#',
+    link: 'https://www.instagram.com/mryasinq',
     icon: 'icon-[basil--instagram-solid]',
   },
   {
@@ -17,7 +17,7 @@ const SOCIAL_ITEMS = [
   },
   {
     name: 'LinkedIn',
-    link: '#',
+    link: 'https://www.linkedin.com/in/mryasinq',
     icon: 'icon-[basil--linkedin-solid]',
   },
 ] as const;
