@@ -11,7 +11,7 @@ const RecentWorkspace = ({ logo, name, slug }: RecentWorkspaceProps) => {
   return (
     <Link
       href={ROUTES.DASHBOARD.WORKSPACES.SHOW(slug)}
-      className="group hover:border-primary-100 hover:bg-primary-50/50 flex flex-col gap-16 rounded-xl border border-gray-100 bg-gray-50 p-12 transition-colors sm:flex-row sm:items-center sm:justify-between"
+      className="group hover:border-primary-100 hover:bg-primary-50/50 flex items-center justify-between gap-16 rounded-xl border border-gray-100 bg-gray-50 p-12 transition-colors"
     >
       <div className="flex items-center gap-12">
         <Avatar src={logo ?? undefined} fallback={name} size={32} />
